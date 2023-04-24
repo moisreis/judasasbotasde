@@ -13,6 +13,9 @@ module.exports = {
 	],
 	theme: {
 		// Extend the default Tailwind theme.
+		fontFamily: {
+			sans: ['Noto Sans Display'],
+		},
 		extend: {},
 	},
 	corePlugins: {
@@ -26,9 +29,12 @@ module.exports = {
 		// Add Tailwind Typography.
 		require('@tailwindcss/typography'),
 
-		// Uncomment below to add additional first-party Tailwind plugins.
-		// require('@tailwindcss/forms'),
-		// require('@tailwindcss/aspect-ratio'),
-		// require('@tailwindcss/container-queries'),
+		//Add Flowbite
+		require('flowbite/plugin'),
+
+		// Additional first-party Tailwind plugins.
+		require('@tailwindcss/forms'),
+		require('@tailwindcss/aspect-ratio'),
+		require('@tailwindcss/container-queries'),
 	],
 };

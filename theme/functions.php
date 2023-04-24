@@ -129,6 +129,7 @@ function judasasbotasde_scripts()
 {
 	wp_enqueue_style('judasasbotasde-style', get_stylesheet_uri(), array(), JUDASASBOTASDE_VERSION);
 	wp_enqueue_script('judasasbotasde-script', get_template_directory_uri() . '/js/script.min.js', array(), JUDASASBOTASDE_VERSION, true);
+	wp_enqueue_script('flowbite-script', '/wp-content/themes/judasasbotasde/node_modules/.pnpm/flowbite@1.6.5/node_modules/flowbite/dist/flowbite.min.js', array(), JUDASASBOTASDE_VERSION, true);
 
 	if (is_singular() && comments_open() && get_option('thread_comments')) {
 		wp_enqueue_script('comment-reply');
@@ -181,3 +182,15 @@ function judasasbotasde_tinymce_add_class($settings)
 	return $settings;
 }
 add_filter('tiny_mce_before_init', 'judasasbotasde_tinymce_add_class');
+
+/**
+ * Add Google Font Scripts to the <head> tag
+ */
+
+function judasasbotasde_fonts()
+{
+	echo '<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Display:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">';
+}
+add_action('wp_head', 'judasasbotasde_fonts');

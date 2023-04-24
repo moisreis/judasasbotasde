@@ -47,5 +47,8 @@
 		"zip": "node node_scripts/zip.js judasasbotasde",
 		"bundle": "run-s production zip"
 	},
-	"prettier": "@wordpress/prettier-config"
+	"prettier": "@wordpress/prettier-config",
+	"dependencies": {
+		"flowbite": "^1.6.5"
+	}
 }
