@@ -11,12 +11,12 @@
 				},
 				{
 					"slug": "foreground",
-					"color": "#404040",
+					"color": "#333333",
 					"name": "Foreground"
 				},
 				{
 					"slug": "primary",
-					"color": "#b91c1c",
+					"color": "#ffe500",
 					"name": "Primary"
 				},
 				{

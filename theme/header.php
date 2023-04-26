@@ -11,6 +11,7 @@
  */
 
 ?>
+
 <!-- 
 	
    __     __  __     _____     ______     ______                              
@@ -44,24 +45,28 @@
 </head>
 
 <body class="overflow-x-hidden">
-	<header>
-		<nav class="flex flex-row gap-6 justify-end py-2 px-6 border-b">
-			<button id="dropdown-languages" data-dropdown-toggle="dropdownLanguages" data-dropdown-placement="bottom" class="text-xs capitalize hover:underline" type="button">Idiomas</button>
-			<!-- Dropdown menu -->
-			<div id="dropdownLanguages" class="z-10 hidden bg-white rounded-lg shadow w-fit dark:bg-gray-700">
-				<ul class="flex flex-col gap-1 h-fit py-2 overflow-y-auto text-gray-700 dark:text-gray-200" aria-labelledby="dropdownLanguagesButton">
-					<li class="px-2 hover:bg-neutral-50">
-						<span class="text-xs">Português</span>
-					</li>
-					<li class="px-2">
-						<span class="text-xs">Inglês</span>
-					</li>
-					<li class="px-2">
-						<span class="text-xs">Espanhol</span>
-					</li>
-				</ul>
-			</div>
-			<button class="text-xs capitalize hover:underline">Webmail</button>
-			<button class="text-xs capitalize hover:underline">Minha conta</button>
+	<!-- Top navigation menu -->
+	<header class="grid grid-cols-12 outline outline-offset-4 outline-1 outline-[#e5e7eb] mb-6">
+		<!-- Hamburguer menu -->
+		<nav class="col-span-1 flex flex-row justify-center content-center items-center border-r border-b py-2">
+			<button class="">
+				<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 text-foreground">
+					<path stroke-linecap="miter" stroke-linejoin="miter" d="M3.75 9h16.5m-16.5 6.75h16.5" />
+				</svg>
+			</button>
+		</nav>
+		<!-- Main menu -->
+		<nav class="col-span-9 gap-6 flex flex-row justify-center content-center items-center border-r border-b py-2 ">
+			<button class="text-sm uppercase font-medium tracking-widest">Opinião<button>
+			<button class="text-sm uppercase font-medium tracking-widest">Cultura <b class="font-black">POP</b><button>
+			<button class="text-sm uppercase font-medium tracking-widest">Cinema<button>
+			<button class="text-sm uppercase font-medium tracking-widest">Acadêmico<button>
+			<button class="text-sm uppercase font-black tracking-widest">Forca de Judas<button>
+		</nav>
+		<nav class="col-span-1 flex flex-row justify-center content-center items-center border-r border-b py-2">
+			<button class="text-sm uppercase font-medium tracking-widest">Entrar<button>
+		</nav>
+		<nav class="col-span-1 flex flex-row justify-center content-center items-center border-r border-b py-2">
+			<button class="text-sm uppercase font-medium tracking-widest">E-mail<button>
 		</nav>
 	</header>
