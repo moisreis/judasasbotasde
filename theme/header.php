@@ -55,18 +55,34 @@
 				</svg>
 			</button>
 		</nav>
+		<!-- Search menu -->
+		<nav class="col-span-1 flex flex-row justify-center content-center items-center border-r border-b py-2">
+			<button class="">
+				<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-foreground">
+					<path stroke-linecap="miter" stroke-linejoin="miter" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+				</svg>
+			</button>
+		</nav>
+		<!-- Zoom in or out menu -->
+		<nav class="col-span-1 flex flex-row justify-center content-center items-center border-r border-b py-2">
+			<button class="">
+				<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-foreground">
+					<path stroke-linecap="miter" stroke-linejoin="miter" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6" />
+				</svg>
+			</button>
+		</nav>
 		<!-- Main menu -->
-		<nav class="col-span-9 gap-6 flex flex-row justify-center content-center items-center border-r border-b py-2 ">
-			<button class="text-xs uppercase font-medium tracking-widest">Opinião<button>
-			<button class="text-xs uppercase font-medium tracking-widest">Cultura <b class="font-black">POP</b><button>
-			<button class="text-xs uppercase font-medium tracking-widest">Cinema<button>
-			<button class="text-xs uppercase font-medium tracking-widest">Acadêmico<button>
-			<button class="text-xs uppercase font-black tracking-widest">Forca de Judas<button>
+		<nav class="col-span-7 gap-6 flex flex-row justify-center content-center items-center border-r border-b py-2 ">
+			<button class="text-xs uppercase font-medium tracking-widest">Opinião</button>
+			<button class="text-xs uppercase font-medium tracking-widest">Cultura <b class="font-black">POP</b></button>
+			<button class="text-xs uppercase font-medium tracking-widest">Cinema</button>
+			<button class="text-xs uppercase font-medium tracking-widest">Acadêmico</button>
+			<button class="text-xs uppercase font-black tracking-widest">Forca de Judas</button>
 		</nav>
 		<nav class="col-span-1 flex flex-row justify-center content-center items-center border-r border-b py-2">
-			<button class="text-xs uppercase font-medium tracking-widest">Entrar<button>
+			<button class="text-xs uppercase font-medium tracking-widest">Entrar</button>
 		</nav>
-		<nav class="col-span-1 flex flex-row justify-center content-center items-center border-r border-b py-2">
-			<button class="text-xs uppercase font-medium tracking-widest">E-mail<button>
+		<nav class="col-span-1 flex flex-row justify-center content-center items-center border-b py-2">
+			<button class="text-xs uppercase font-medium tracking-widest">E-mail</button>
 		</nav>
 	</header>
