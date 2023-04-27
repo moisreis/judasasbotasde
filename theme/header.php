@@ -50,23 +50,23 @@
 		<!-- Hamburguer menu -->
 		<nav class="col-span-1 flex flex-row justify-center content-center items-center border-r border-b py-2">
 			<button class="">
-				<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 text-foreground">
+				<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-foreground">
 					<path stroke-linecap="miter" stroke-linejoin="miter" d="M3.75 9h16.5m-16.5 6.75h16.5" />
 				</svg>
 			</button>
 		</nav>
 		<!-- Main menu -->
 		<nav class="col-span-9 gap-6 flex flex-row justify-center content-center items-center border-r border-b py-2 ">
-			<button class="text-sm uppercase font-medium tracking-widest">Opinião<button>
-			<button class="text-sm uppercase font-medium tracking-widest">Cultura <b class="font-black">POP</b><button>
-			<button class="text-sm uppercase font-medium tracking-widest">Cinema<button>
-			<button class="text-sm uppercase font-medium tracking-widest">Acadêmico<button>
-			<button class="text-sm uppercase font-black tracking-widest">Forca de Judas<button>
+			<button class="text-xs uppercase font-medium tracking-widest">Opinião<button>
+			<button class="text-xs uppercase font-medium tracking-widest">Cultura <b class="font-black">POP</b><button>
+			<button class="text-xs uppercase font-medium tracking-widest">Cinema<button>
+			<button class="text-xs uppercase font-medium tracking-widest">Acadêmico<button>
+			<button class="text-xs uppercase font-black tracking-widest">Forca de Judas<button>
 		</nav>
 		<nav class="col-span-1 flex flex-row justify-center content-center items-center border-r border-b py-2">
-			<button class="text-sm uppercase font-medium tracking-widest">Entrar<button>
+			<button class="text-xs uppercase font-medium tracking-widest">Entrar<button>
 		</nav>
 		<nav class="col-span-1 flex flex-row justify-center content-center items-center border-r border-b py-2">
-			<button class="text-sm uppercase font-medium tracking-widest">E-mail<button>
+			<button class="text-xs uppercase font-medium tracking-widest">E-mail<button>
 		</nav>
 	</header>

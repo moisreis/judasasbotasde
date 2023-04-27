@@ -14,6 +14,7 @@ module.exports = {
 	theme: {
 		// Extend the default Tailwind theme.
 		fontFamily: {
+			serif: ['Playfair Display'],
 			sans: ['Noto Sans Display'],
 			display: ['Noto Sans Display'],
 			mono: ['Courier Prime'],
