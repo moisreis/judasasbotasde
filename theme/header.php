@@ -56,7 +56,7 @@
 				</svg>
 			</button>
 			<!-- Hamburguer menu dropdown -->
-			<div id="hamburguer-menu" class="flex flex-col justify-start content-center gap-6 hidden bg-white border z-[999] p-6">
+			<div id="hamburguer-menu" class="shadow-sm flex flex-col justify-start content-center gap-6 hidden bg-white border z-[999] p-6">
 				<!-- Hamburguer logo -->
 				<div id="hamburguer-logo">
 					<img class="w-20 h-20" src="http://localhost/judasasbotasde/wp-content/uploads/2023/04/logo.svg" alt="">
