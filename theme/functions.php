@@ -132,6 +132,8 @@ function judasasbotasde_scripts()
 	wp_enqueue_script('judasasbotasde-script', get_template_directory_uri() . '/js/script.min.js', array(), JUDASASBOTASDE_VERSION, true);
 	wp_enqueue_script('flowbite-script', '/wp-content/themes/judasasbotasde/node_modules/.pnpm/flowbite@1.6.5/node_modules/flowbite/dist/flowbite.min.js', array(), JUDASASBOTASDE_VERSION, true);
 	wp_enqueue_script('swiper-script', '/wp-content/themes/judasasbotasde/node_modules/.pnpm/swiper@9.2.4/node_modules/swiper/swiper-bundle.min.js', array(), JUDASASBOTASDE_VERSION);
+	wp_enqueue_script('videojs-script', '/wp-content/themes/judasasbotasde/node_modules/.pnpm/video.js@8.3.0/node_modules/video.js/dist/video.min.js', array(), JUDASASBOTASDE_VERSION);
+	wp_enqueue_style('videojs-style', '/wp-content/themes/judasasbotasde/node_modules/.pnpm/video.js@8.3.0/node_modules/video.js/dist/video-js.min.css', array(), JUDASASBOTASDE_VERSION);
 
 	if (is_singular() && comments_open() && get_option('thread_comments')) {
 		wp_enqueue_script('comment-reply');
@@ -188,7 +190,6 @@ add_filter('tiny_mce_before_init', 'judasasbotasde_tinymce_add_class');
 /**
  * Add Google Font Scripts to the <head> tag
  */
-
 function judasasbotasde_fonts()
 {
 	echo '<link rel="preconnect" href="https://fonts.googleapis.com">
@@ -199,9 +200,54 @@ function judasasbotasde_fonts()
 	<link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">';
 	echo '<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">';
+	<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">';
 	echo '<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">';
+	<link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">';
 }
 add_action('wp_head', 'judasasbotasde_fonts');
+
+/**
+ * Creates a custom field in the users profile menu
+ * so custom profile pictures can be added and displayed
+ * in the website
+ */
+function add_author_fields($user)
+{
+?>
+	<h3><?php _e('Custom Fields'); ?></h3>
+	<table class="form-table">
+		<tr>
+			<th><label for="author_image"><?php _e('Author Image'); ?></label></th>
+			<td>
+				<?php
+				$author_image = get_the_author_meta('author_image', $user->ID);
+				if (!empty($author_image)) {
+					echo '<img src="' . esc_url($author_image) . '" width="100">';
+				}
+				?>
+				<input type="text" name="author_image" id="author_image" value="<?php echo esc_attr(get_the_author_meta('author_image', $user->ID)); ?>" class="regular-text">
+				<br>
+				<span class="description"><?php _e('Enter the URL of the author image.'); ?></span>
+			</td>
+		</tr>
+	</table>
+<?php
+}
+add_action('show_user_profile', 'add_author_fields');
+add_action('edit_user_profile', 'add_author_fields');
+
+
+
+/**
+ * Saves the new profile picture
+ */
+function save_author_fields($user_id)
+{
+	if (!current_user_can('edit_user', $user_id)) {
+		return false;
+	}
+	update_user_meta($user_id, 'author_image', $_POST['author_image']);
+}
+add_action('personal_options_update', 'save_author_fields');
+add_action('edit_user_profile_update', 'save_author_fields');
