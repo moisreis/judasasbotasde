@@ -21,7 +21,7 @@ To get started with Judas as Botas de, follow these steps:
 * Start the development server by running **pnpm run dev**
 * Build the production files by running **pnpm run build** in your terminal
 * Deploy the files to your hosting provider using FTP or a similar method
-* Set up your WordPress installation on the live server and activate the JUDAS, As botas de theme
+* Set up your WordPress installation on the live server and activate the **JUDAS, As botas de** theme
 
 ## 🤝 Contributing
 
