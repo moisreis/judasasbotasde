@@ -134,6 +134,7 @@ function judasasbotasde_scripts()
 	wp_enqueue_script('swiper-script', '/wp-content/themes/judasasbotasde/node_modules/.pnpm/swiper@9.2.4/node_modules/swiper/swiper-bundle.min.js', array(), JUDASASBOTASDE_VERSION);
 	wp_enqueue_script('videojs-script', '/wp-content/themes/judasasbotasde/node_modules/.pnpm/video.js@8.3.0/node_modules/video.js/dist/video.min.js', array(), JUDASASBOTASDE_VERSION);
 	wp_enqueue_style('videojs-style', '/wp-content/themes/judasasbotasde/node_modules/.pnpm/video.js@8.3.0/node_modules/video.js/dist/video-js.min.css', array(), JUDASASBOTASDE_VERSION);
+	wp_enqueue_script('clipboard-script', '/wp-content/themes/judasasbotasde/node_modules/.pnpm/clipboard@2.0.11/node_modules/clipboard/dist/clipboard.min.js', array(), JUDASASBOTASDE_VERSION);
 
 	if (is_singular() && comments_open() && get_option('thread_comments')) {
 		wp_enqueue_script('comment-reply');
@@ -189,22 +190,34 @@ add_filter('tiny_mce_before_init', 'judasasbotasde_tinymce_add_class');
 
 /**
  * Add Google Font Scripts to the <head> tag
+ *
+ * This function generates the necessary HTML code to add Google Fonts to the <head> section of a webpage.
+ *
+ * @return void
  */
 function judasasbotasde_fonts()
 {
 	echo '<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Display:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">';
+
 	echo '<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">';
+
 	echo '<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">';
+
 	echo '<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">';
+
+	echo '<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Noto+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">';
 }
+
 add_action('wp_head', 'judasasbotasde_fonts');
 
 /**
@@ -238,9 +251,11 @@ add_action('show_user_profile', 'add_author_fields');
 add_action('edit_user_profile', 'add_author_fields');
 
 
-
 /**
  * Saves the new profile picture
+ *
+ * @param int $user_id The ID of the user whose profile picture is being updated
+ * @return bool False if the user doesn't have permission to update the profile picture, true otherwise.
  */
 function save_author_fields($user_id)
 {
@@ -249,5 +264,89 @@ function save_author_fields($user_id)
 	}
 	update_user_meta($user_id, 'author_image', $_POST['author_image']);
 }
+
+// Hooks save_author_fields function to the personal_options_update and edit_user_profile_update actions
 add_action('personal_options_update', 'save_author_fields');
 add_action('edit_user_profile_update', 'save_author_fields');
+
+/**
+ * Adds custom fields to user profile
+ *
+ * @param array $user_contact An array of user contact fields
+ * @return array An array of user contact fields including the added custom fields
+ */
+function add_user_custom_fields($user_contact)
+{
+	$user_contact['position'] = __('Position');
+	$user_contact['location'] = __('Location');
+	return $user_contact;
+}
+
+// Hooks add_user_custom_fields function to the user_contactmethods filter
+add_filter('user_contactmethods', 'add_user_custom_fields');
+
+/**
+ * Excludes a number of most recent posts in a given category
+ * 
+ * @param int $num_posts Number of posts to retrieve
+ * @param string $category_name Category name from which the posts will be retrieved
+ * @return array List of post IDs to exclude
+ */
+function get_posts_exclude_most_recent_in_category($num_posts, $category_name)
+{
+	$category = get_category_by_slug($category_name);
+	$args = array(
+		'posts_per_page' => $num_posts,
+		'category' => $category->term_id,
+		'orderby' => 'date',
+		'order' => 'DESC',
+		'fields' => 'ids',
+	);
+	$recent_posts = get_posts($args);
+	return $recent_posts;
+}
+
+/**
+ * This function generates a shortcode for social sharing
+ * It can be used to display social media sharing buttons on posts and pages.
+ */
+function social_sharing_shortcode()
+{
+	// Get the current post URL and title
+	$url = urlencode(get_permalink());
+	$title = urlencode(get_the_title());
+
+	// Create an array with the social media networks and their URLs
+	$social_networks = array(
+		'Facebook' => "https://www.facebook.com/sharer/sharer.php?u={$url}",
+		'Twitter' => "https://twitter.com/share?url={$url}&text={$title}",
+		'WhatsApp' => "http://pinterest.com/pin/create/button/?url={$url}&description={$title}",
+		'Email' => "",
+	);
+
+	// Create the HTML for the social sharing buttons
+	$output = '<div class="flex items-center justify-start gap-6">';
+	foreach ($social_networks as $network => $url) {
+		$output .= '<button class="bg-white border border-neutral-300 focus:outline-none hover:bg-neutral-100 font-medium rounded-3xl max-w-fit max-h-fit text-sm flex flex-row gap-2 justify-center content-center items-center px-3 py-1.5">';
+		$output .= '<a href="' . $url . '" target="_blank">' . $network . '</a>';
+		$output .= '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">';
+		$output .= '<path stroke-linecap="round" stroke-linejoin="round" d="M15 15l6-6m0 0l-6-6m6 6H9a6 6 0 000 12h3" />';
+		$output .= '</svg>';
+		$output .= '</button>';
+	}
+	$output .= '</div>';
+
+	return $output;
+}
+add_shortcode('social_sharing', 'social_sharing_shortcode');
+
+/**
+ * Calculates estimated reading time for an article
+ */
+function get_post_reading_time()
+{
+	$content = get_post_field('post_content', get_the_ID());
+	$word_count = str_word_count(strip_tags($content));
+	$reading_time = ceil($word_count / 200); // Assuming an average reading speed of 200 words per minute
+	return $reading_time;
+}

@@ -54,3 +54,9 @@
 .entry-content > .alignright {
 	@apply float-right ml-8;
 }
+figcaption {
+	@apply !text-xs !text-foreground/80
+}
+blockquote {
+	@apply !bg-neutral-100 !py-1 !px-4 !text-foreground/80 !border-none !not-italic
+}

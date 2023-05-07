@@ -6,3 +6,10 @@
  * For esbuild documentation, please see:
  * https://esbuild.github.io/
  */
+// Select all images on the page
+const images = document.querySelectorAll('img');
+
+// Loop through each image and add the loading=lazy attribute
+images.forEach((image) => {
+	image.setAttribute('loading', 'lazy');
+});
