@@ -36,7 +36,7 @@ get_header();
                 </figure>
             <?php endif; ?>
             <!-- Post meta -->
-            <div class="flex flex-col justify-start content-start gap-0">
+            <div class="flex flex-col justify-start content-start gap-0 before:block before:h-[8px] before:mb-6 before:w-full before:border-t-2 before:border-b">
                 <?php
                 // Retrieve author image
                 $author_image = get_the_author_meta('author_image', get_the_author_meta('ID'));
@@ -63,12 +63,11 @@ get_header();
                         <time class="text-xs text-foreground/80 uppercase"><?php echo __('Última atualização em', 'text-domain') . ' ' . get_the_modified_time('F j, Y'); ?></time>
                     <?php endif; ?>
                     <span class="text-sm text-foreground/80 uppercase">·</span>
-                    <span class="uppercase text-foreground/80 text-xs">Bahia, Brasil</span>
-
+                    <span class="uppercase text-foreground/80 text-xs"><?php echo get_post_reading_time(); ?> min</span>
                 </div>
             </div>
             <!-- Post content -->
-            <article class="prose max-w-none mb-12 text-lg font-serif text-foreground/90 pt-6 before:block before:h-[6px] before:mb-6 before:w-full before:border-t before:border-b">
+            <article class="prose prose-a:text-blue-600 prose-a:no-underline transition-colors max-w-none mb-12 prose-xl font-serif text-foreground pt-6 before:block before:h-[8px] before:mb-6 before:w-full before:border-t-2 before:border-b">
                 <?php the_content(); ?>
             </article>
             <!-- Share buttons -->
@@ -81,9 +80,25 @@ get_header();
                     </svg>
                 </button>
             </div>
+            <!-- Donations -->
+            <div class="mb-12">
+                <h3 class="font-display text-4xl font-black mb-6 after:block after:h-[8px] after:mt-2 after:w-full after:border-t-2 after:border-b capitalize">Preciamos de você</h3>
+                <div class="border p-4 outline outline-offset-4 outline-1 outline-[#e5e7eb] bg-neutral-100">
+                    <p class="text-base mb-4">...já que você chegou até aqui, temos um pequeno favor a pedir. Desde que começamos a publicar, em 2020, o Brasil vem enfrentando ameaças autoritárias dia sim e dia também, fome, miséria e violência política - todas fomentadas por um presidente que faz pouco das mais de 600 mil vítimas da pandemia de covid-19. Queremos continuar produzindo um conteúdo combativo e de qualidade em tempos tão conturbados.</p>
+                    <p class="text-base mb-4">Mesmo em tempos de crise, toda a nossa equipe trabalha gratuitamente e não cobramos absolutamente nada de nossos leitores - fora o tempo. Fazemos isso porque acreditamos na luta contra a desinformação e o fascismo, e também acreditamos que quanto mais livre é o conhecimento, maior é o número de pessoas que podem acompanhar os acontecimentos que moldam o nosso mundo, compreender o seu impacto nas comunidades e inspirar-se para tomar medidas significativas. Milhões podem se beneficiar do acesso aberto a um conteúdo relevante, confiável e de qualidade, independentemente da sua capacidade de pagar por isso.</p>
+                    <p class="text-base mb-4">Cada contribuição, seja ela grande ou pequena, alimenta o nosso trabalho e sustenta o nosso futuro. Apoie o <i>JUDAS, As botas de</i> a partir de R$1 - demora apenas um minuto. <b class="bg-yellow-300 font-bold">Entendemos a situação do Brasil, mas, por favor, considere apoiar-nos com uma quantia regular todos os meses. Obrigado.</b></p>
+                    <p class="text-base mb-4">O nosso PIX é <i class="font-bold text-blue-600">74991895723</i>, mas você também pode colaborar clicando no botão abaixo, é muito rápido</p>
+                    <button class="px-4 py-2 bg-amber-500 text-white max-w-fit max-h-fit rounded-3xl text-sm flex flex-row gap-2 justify-center content-center items-center">
+                        <span>Apoie-nos</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+                            <path stroke-linecap="miter" stroke-linejoin="miter" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
+                        </svg>
+                    </button>
+                </div>           
+            </div>
             <!-- ABNT references div -->
             <div class="mb-12">
-                <h3 class="font-display text-4xl font-black mb-6 after:block after:h-[6px] after:mt-2 after:w-full after:border-t after:border-b capitalize">Cite-nos</h3>
+                <h3 class="font-display text-4xl font-black mb-6 after:block after:h-[8px] after:mt-2 after:w-full after:border-t-2 after:border-b capitalize">Cite-nos</h3>
                 <!-- ABNT content -->
                 <div class="mb-6" id="abnt-reference"><?php echo do_shortcode('[abnt_reference]'); ?></div>
                 <!-- Copy button -->
@@ -110,25 +125,9 @@ get_header();
                     });
                 </script>
             </div>
-            <!-- Donations -->
-            <div class="mb-12">
-                <h3 class="font-display text-4xl font-black mb-6 after:block after:h-[6px] after:mt-2 after:w-full after:border-t after:border-b capitalize">Preciamos de você</h3>
-                <div class="border p-4 outline outline-offset-4 outline-1 outline-[#e5e7eb] bg-neutral-100">
-                    <p class="text-base mb-4">...já que você chegou até aqui, temos um pequeno favor a pedir. Desde que começamos a publicar, em 2020, o Brasil vem enfrentando ameaças autoritárias dia sim e dia também, fome, miséria e violência política - todas fomentadas por um presidente que faz pouco das mais de 600 mil vítimas da pandemia de covid-19. Queremos continuar produzindo um conteúdo combativo e de qualidade em tempos tão conturbados.</p>
-                    <p class="text-base mb-4">Mesmo em tempos de crise, toda a nossa equipe trabalha gratuitamente e não cobramos absolutamente nada de nossos leitores - fora o tempo. Fazemos isso porque acreditamos na luta contra a desinformação e o fascismo, e também acreditamos que quanto mais livre é o conhecimento, maior é o número de pessoas que podem acompanhar os acontecimentos que moldam o nosso mundo, compreender o seu impacto nas comunidades e inspirar-se para tomar medidas significativas. Milhões podem se beneficiar do acesso aberto a um conteúdo relevante, confiável e de qualidade, independentemente da sua capacidade de pagar por isso.</p>
-                    <p class="text-base mb-4">Cada contribuição, seja ela grande ou pequena, alimenta o nosso trabalho e sustenta o nosso futuro. Apoie o <i>JUDAS, As botas de</i> a partir de R$1 - demora apenas um minuto. <b class="bg-yellow-300 font-bold">Entendemos a situação do Brasil, mas, por favor, considere apoiar-nos com uma quantia regular todos os meses. Obrigado.</b></p>
-                    <p class="text-base mb-4">O nosso PIX é <i class="font-bold text-blue-600">74991895723</i>, mas você também pode colaborar clicando no botão abaixo, é muito rápido</p>
-                    <button class="px-4 py-2 bg-amber-500 text-white max-w-fit max-h-fit rounded-3xl text-sm flex flex-row gap-2 justify-center content-center items-center">
-                        <span>Apoie-nos</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
-                            <path stroke-linecap="miter" stroke-linejoin="miter" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
-                        </svg>
-                    </button>
-                </div>
-            </div>
             <!-- Related articles -->
             <div class="mb-12">
-                <h3 class="font-display text-4xl font-black mb-6 after:block after:h-[6px] after:mt-2 after:w-full after:border-t after:border-b capitalize">Leia também</h3>
+                <h3 class="font-display text-4xl font-black mb-6 after:block after:h-[8px] after:mt-2 after:w-full after:border-t-2 after:border-b capitalize">Leia também</h3>
                 <div class="grid grid-cols-2 gap-12">
                     <?php
                     // Retrieve 4 related posts from the same category
@@ -144,21 +143,34 @@ get_header();
                         while ($related_posts->have_posts()) :
                             $related_posts->the_post();
                     ?>
+                            <?php
+                            // Get the custom author image if it exists
+                            $author_image = get_the_author_meta('author_image', get_the_author_meta('ID'));
+                            ?>
                             <!-- Individual post -->
                             <div class="relative group flex flex-col gap-2">
-                                <!-- Display post category -->
-                                <div class="flex flex-row flex-wrap gap-2">
-                                    <span class="relative max-w-fit text-sm font-sans font-bold lowercase text-blue-700"><?php echo get_the_category_list(', '); ?></span>
-                                </div>
                                 <!-- Display post thumbnail image and caption -->
                                 <div class="relative flex flex-col gap-1">
                                     <img class="min-h-[14rem] max-h-56 object-cover" src="<?php echo get_the_post_thumbnail_url(); ?>" alt="<?php echo the_title(); ?>">
                                 </div>
                                 <!-- Display post title, excerpt, and author -->
                                 <div class="flex flex-col gap-2">
-                                    <h3 class="group-hover:opacity-80 transition-opacity font-bold capitalize text-lg font-sans transition-all"><?php the_title(); ?></h3>
+                                    <h3 class="group-hover:opacity-80 transition-opacity font-bold capitalize text-lg font-sans"><?php the_title(); ?></h3>
                                     <span class="line-clamp-3 text-foreground/90 text-sm"><?php the_excerpt(); ?></span>
-                                    <span class="text-xs font-mono text-foreground/80 mt-2">Por <u class="text-blue-600"><?php the_author(); ?></u></span>
+                                    <!-- Article author and picture -->
+                                    <div class="flex flex-row gap-2 justify-start content-center items-center mt-1">
+                                        <?php if (!empty($author_image)) : // Check if the author has a custom profile picture 
+                                        ?>
+                                            <!-- Custom author image -->
+                                            <img class="w-6 h-6 rounded-full object-cover saturate-0" src="<?php echo esc_url($author_image); ?>" alt="<?php the_author(); ?>">
+                                        <?php else : ?>
+                                            <!-- Default author avatar -->
+                                            <?php echo get_avatar(get_the_author_meta('email'), 64, '', '', array('class' => 'w-6 h-6 rounded-full object-cover saturate-0')); ?>
+                                        <?php endif; ?>
+                                        <span class="text-xs text-foreground/60"><?php the_author(); ?></span>
+                                        <span class="text-sm text-foreground/60">·</span>
+                                        <span class="text-xs text-foreground/60"><?php echo get_post_reading_time(); ?> min</span>
+                                    </div>
                                 </div>
                                 <!-- Create a link to the individual post -->
                                 <a class="z-[999] absolute h-full w-full" href="<?php the_permalink(); ?>"></a>
@@ -173,33 +185,6 @@ get_header();
         </section>
     <?php endwhile; ?>
     <aside class="col-span-4 flex flex-col content-center justify-center px-24">
-        <section class="flex flex-col gap-12 max-h-fit py-12 border-t border-b">
-            <?php
-            $args = array(
-                'post_type' => 'post',
-                'category_name' => 'artigos-cientificos',
-                'posts_per_page' => 8,
-            );
-            $query = new WP_Query($args);
-            if ($query->have_posts()) :
-                while ($query->have_posts()) : $query->the_post(); ?>
-                    <!-- Editor's choice posts -->
-                    <a class="group" href="<?php the_permalink(); ?>">
-                        <div class="grid grid-cols-12 gap-3">
-                            <div class="flex flex-col gap-2 col-span-8">
-                                <h3 class="group-hover:opacity-80 transition-opacity font-sans font-bold text-sm capitalize"><?php the_title(); ?></h3>
-                                <span class="text-xs font-mono text-foreground/80">Opinião de <u><?php the_author(); ?></u></span>
-                            </div>
-                            <div class="col-span-4">
-                                <img class="h-20 w-full object-cover" src="<?php echo get_the_post_thumbnail_url(); ?>" alt="<?php echo the_title(); ?>">
-                            </div>
-                        </div>
-                    </a>
-            <?php endwhile;
-                wp_reset_postdata();
-            endif;
-            ?>
-        </section>
     </aside>
 </main>
 

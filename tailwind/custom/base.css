@@ -14,3 +14,21 @@
 body {
 	@apply bg-background text-foreground font-sans;
 }
+.swiper-button-next,
+.swiper-button-prev {
+	background-color: white !important;
+	border: solid 1px #e5e7eb !important;
+	border-radius: 999px !important;
+	height: 2rem !important;
+	width: 2rem !important;
+}
+.swiper-button-prev {
+	left: 0px !important;
+}
+.swiper-button-next {
+	right: 32px !important;
+}
+.swiper-button-next::after,
+.swiper-button-prev::after {
+	display: none !important;
+}

@@ -18,13 +18,13 @@ get_header();
 <!-- Start of main page -->
 <main id="index">
     <!-- Display authors carousel -->
-    <section class="px-12 flex flex-row justify-between mb-12">
+    <section class="px-8 xl:px-12 flex flex-row justify-between mb-12">
         <?php
         // Arguments to get authors with highest post counts
         $args = array(
             'orderby' => 'post_count', // Sort by post count
             'order' => 'DESC', // Sort in descending order
-            'number' => 8 // Get maximum of 8 authors
+            'number' => 12 // Get maximum of 12 authors
         );
 
         // Retrieve authors with the given arguments
@@ -32,6 +32,11 @@ get_header();
 
         // Check if there are any authors with more than 1 post
         if (!empty($authors)) {
+
+            // Start of author div
+            echo '<!-- Author div -->';
+            echo '<div class="swiper authorSwiper">';
+            echo '<div class="swiper-wrapper justify-between">';
 
             // Display authors carousel if authors with more than 1 post exist
             foreach ($authors as $author) {
@@ -45,54 +50,70 @@ get_header();
                 $author_image = get_the_author_meta('author_image', $author_id);
 
                 // Display author information if they have more than 1 post
-                if ($post_count > 1) {
+                if ($post_count > 0) {
 
-                    // Start of author div
-                    echo '<!-- Author div -->';
-                    echo '<div class="relative">';
-
+                    echo '<!-- Author Swiper slide -->';
+                    echo '<div class="swiper-slide">';
                     // Display author image and name with a link to their posts
                     echo '<a class="w-24 flex flex-col justify-center content-center items-center gap-2" href="' . $author_link . '">';
                     echo '<img class="w-16 h-16 rounded-full object-cover saturate-0" src="' . esc_url($author_image) . '" alt="' . esc_html($author->display_name) . '">';
                     echo '<span class="block text-foreground/60 text-xs text-center">' . esc_html($author->display_name) . '</span>';
                     echo '</a>';
-
-                    // End of author div
                     echo '</div>';
                 }
             }
+
+            echo '</div>';
+
+            // Swipper navigation
+            echo '<div class="swiper-button-next"><svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-foreground"><path d="M6.1584 3.13508C6.35985 2.94621 6.67627 2.95642 6.86514 3.15788L10.6151 7.15788C10.7954 7.3502 10.7954 7.64949 10.6151 7.84182L6.86514 11.8418C6.67627 12.0433 6.35985 12.0535 6.1584 11.8646C5.95694 11.6757 5.94673 11.3593 6.1356 11.1579L9.565 7.49985L6.1356 3.84182C5.94673 3.64036 5.95694 3.32394 6.1584 3.13508Z" fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"></path></svg></div>';
+            echo '<div class="swiper-button-prev"><svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-foreground"><path d="M8.84182 3.13514C9.04327 3.32401 9.05348 3.64042 8.86462 3.84188L5.43521 7.49991L8.86462 11.1579C9.05348 11.3594 9.04327 11.6758 8.84182 11.8647C8.64036 12.0535 8.32394 12.0433 8.13508 11.8419L4.38508 7.84188C4.20477 7.64955 4.20477 7.35027 4.38508 7.15794L8.13508 3.15794C8.32394 2.95648 8.64036 2.94628 8.84182 3.13514Z" fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"></path></svg></div>';
+
+            // End of author div
+            echo '</div>';
         }
         ?>
+        <!-- Initialize the Swiper plugin -->
+        <script id="swiper-handler">
+            var swiper = new Swiper(".authorSwiper", {
+                slidesPerView: 8,
+                spaceBetween: 32,
+                navigation: {
+                    nextEl: ".swiper-button-next",
+                    prevEl: ".swiper-button-prev",
+                },
+            });
+        </script>
     </section>
     <!-- Main articles -->
-    <section class="px-12 mb-12">
+    <section class="px-8 xl:px-12 mb-12">
         <h2 class="capitalize font-serif text-4xl font-black mb-6 after:block after:h-[8px] after:mt-2 after:w-full after:border-t-2 after:border-b">Mais recente</h2>
-        <div class="grid grid-cols-12 gap-12">
-            <!-- New posts column -->
-            <div class="col-span-4">
-                <?php
-                // Retrieve only the latest post
-                $args = array(
-                    'posts_per_page' => 1,
-                );
-                $latest_post = get_posts($args)[0];
+        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-12">
+            <?php
+            // Retrieve the two most recent posts
+            $args = array(
+                'posts_per_page' => 3,
+            );
+            $latest_posts = get_posts($args);
 
+            // Loop through each post
+            foreach ($latest_posts as $post) :
                 // Extract post data
-                $post_categories = wp_get_post_categories($latest_post->ID);
-                $post_title = $latest_post->post_title;
-                $post_excerpt = $latest_post->post_excerpt;
-                $post_author_id = $latest_post->post_author; // get the author ID
-                $post_author = get_the_author_meta('display_name', $latest_post->post_author);
-                $post_image_id = get_post_thumbnail_id($latest_post->ID);
-                $post_image_url = get_the_post_thumbnail_url($latest_post->ID);
+                $post_categories = wp_get_post_categories($post->ID);
+                $post_title = $post->post_title;
+                $post_excerpt = $post->post_excerpt;
+                $post_author_id = $post->post_author; // get the author ID
+                $post_author = get_the_author_meta('display_name', $post->post_author);
+                $post_image_id = get_post_thumbnail_id($post->ID);
+                $post_image_url = get_the_post_thumbnail_url($post->ID);
                 $post_image = get_post($post_image_id);
-                $post_permalink = get_permalink($latest_post->ID);
+                $post_permalink = get_permalink($post->ID);
 
                 // Get the author image
                 $author_image = get_the_author_meta('author_image', $post_author_id);
 
                 // Display post using the HTML code
-                ?>
+            ?>
                 <!-- Newest article -->
                 <a class="group" href="<?php echo $post_permalink ?>">
                     <div class="flex flex-col gap-2" id="newest-post">
@@ -117,60 +138,69 @@ get_header();
                         </div>
                     </div>
                 </a>
-            </div>
+            <?php endforeach; ?>
+        </div>
+    </section>
+    <!-- Cinema content -->
+    <section class="px-8 xl:px-12 mb-12">
+        <h2 class="capitalize font-serif text-4xl font-black mb-6 after:block after:h-[8px] after:mt-2 after:w-full after:border-t-2 after:border-b">Críticas de Cinema</h2>
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-12">
             <!-- New cinema post column -->
-            <div class="col-span-4">
+            <div class="col-span-full lg:col-span-8 grid grid-cols-1 lg:grid-cols-2 gap-12">
                 <?php
-                // Retrieve only the latest post
+                // Retrieve the 2 latest posts
                 $args = array(
-                    'posts_per_page' => 1,
+                    'posts_per_page' => 2,
                     'category_name' => 'cinema',
                 );
-                $latest_cinema_post = get_posts($args)[0];
+                $latest_cinema_posts = get_posts($args);
 
-                // Extract post data
-                $post_categories = wp_get_post_categories($latest_cinema_post->ID);
-                $post_title = $latest_cinema_post->post_title;
-                $post_excerpt = $latest_cinema_post->post_excerpt;
-                $post_author_id = $latest_cinema_post->post_author; // get the author ID
-                $post_author = get_the_author_meta('display_name', $latest_cinema_post->post_author);
-                $post_image_id = get_post_thumbnail_id($latest_cinema_post->ID);
-                $post_image_url = get_the_post_thumbnail_url($latest_cinema_post->ID);
-                $post_image = get_post($post_image_id);
-                $post_permalink = get_permalink($latest_cinema_post->ID);
+                // Loop through each post
+                foreach ($latest_cinema_posts as $latest_cinema_post) {
+                    // Extract post data
+                    $post_categories = wp_get_post_categories($latest_cinema_post->ID);
+                    $post_title = $latest_cinema_post->post_title;
+                    $post_excerpt = $latest_cinema_post->post_excerpt;
+                    $post_author_id = $latest_cinema_post->post_author; // get the author ID
+                    $post_author = get_the_author_meta('display_name', $latest_cinema_post->post_author);
+                    $post_image_id = get_post_thumbnail_id($latest_cinema_post->ID);
+                    $post_image_url = get_the_post_thumbnail_url($latest_cinema_post->ID);
+                    $post_image = get_post($post_image_id);
+                    $post_permalink = get_permalink($latest_cinema_post->ID);
 
-                // Get the author image
-                $author_image = get_the_author_meta('author_image', $post_author_id);
+                    // Get the author image
+                    $author_image = get_the_author_meta('author_image', $post_author_id);
 
-                // Display post using the HTML code
+                    // Display post using the HTML code
                 ?>
-                <!-- Newest article -->
-                <a class="group border-b pb-2" href="<?php echo $post_permalink ?>">
-                    <div class="flex flex-col gap-2" id="newest-post">
-                        <div class="flex flex-col gap-1">
-                            <img class="h-80 object-cover object-center" src="<?php echo $post_image_url ?>" alt="<?php echo the_title(); ?>">
+                    <!-- Newest cinema article -->
+                    <a class="group" href="<?php echo $post_permalink ?>">
+                        <div class="flex flex-col gap-2" id="newest-post">
+                            <div class="flex flex-col gap-1">
+                                <img class="h-80 object-cover object-center" src="<?php echo $post_image_url ?>" alt="<?php echo the_title(); ?>">
+                            </div>
+                            <h3 class="group-hover:opacity-80 font-bold capitalize text-xl transition-opacity"><?php echo $post_title ?></h3>
+                            <span class="line-clamp-3 text-foreground/90 text-sm"><?php the_excerpt(); ?></span>
+                            <div class="flex flex-row gap-2 justify-start content-center items-center mt-1">
+                                <!-- Loads the author picture -->
+                                <?php if (!empty($author_image)) : // Check if the author has a custom profile picture 
+                                ?>
+                                    <!-- Custom author image -->
+                                    <img class="w-6 h-6 rounded-full object-cover saturate-0" src="<?php echo esc_url($author_image); ?>" alt="<?php the_author(); ?>">
+                                <?php else : ?>
+                                    <!-- Default author avatar -->
+                                    <?php echo get_avatar(get_the_author_meta('email'), 64, '', '', array('class' => 'w-6 h-6 rounded-full object-cover saturate-0')); ?>
+                                <?php endif; ?>
+                                <span class="text-xs text-foreground/60"><?php echo $post_author ?></span>
+                                <span class="text-sm text-foreground/60">·</span>
+                                <span class="text-xs text-foreground/60"><?php echo get_post_reading_time(); ?> min</span>
+                            </div>
                         </div>
-                        <h3 class="group-hover:opacity-80 font-bold capitalize text-xl transition-opacity"><?php echo $post_title ?></h3>
-                        <span class="line-clamp-3 text-foreground/90 text-sm"><?php the_excerpt(); ?></span>
-                        <div class="flex flex-row gap-2 justify-start content-center items-center mt-1">
-                            <!-- Loads the author picture -->
-                            <?php if (!empty($author_image)) : // Check if the author has a custom profile picture 
-                            ?>
-                                <!-- Custom author image -->
-                                <img class="w-6 h-6 rounded-full object-cover saturate-0" src="<?php echo esc_url($author_image); ?>" alt="<?php the_author(); ?>">
-                            <?php else : ?>
-                                <!-- Default author avatar -->
-                                <?php echo get_avatar(get_the_author_meta('email'), 64, '', '', array('class' => 'w-6 h-6 rounded-full object-cover saturate-0')); ?>
-                            <?php endif; ?>
-                            <span class="text-xs text-foreground/60"><?php echo $post_author ?></span>
-                            <span class="text-sm text-foreground/60">·</span>
-                            <span class="text-xs text-foreground/60"><?php echo get_post_reading_time(); ?> min</span>
-                        </div>
-                    </div>
-                </a>
+                    </a>
+                <?php } ?>
             </div>
             <!-- Cinema articles section -->
-            <div class="col-span-4">
+            <div class="col-span-full lg:col-span-4">
                 <?php
                 // Set the query arguments to retrieve only posts that belong to the 'cinema' category and limit the number of posts to 8
                 $args = array(
@@ -185,7 +215,7 @@ get_header();
                 // Get the first post from 'cinema'
                 $args = array(
                     'post_type' => 'post',
-                    'posts_per_page' => 1,
+                    'posts_per_page' => 2,
                     'post_status' => 'publish',
                     'category_name' => 'cinema',
                     'fields' => 'ids', // Only return the post IDs
@@ -204,7 +234,7 @@ get_header();
                 $query = new WP_Query($args);
                 ?>
                 <!-- Cinema articles grid -->
-                <div class="grid grid-cols-2 p-4 gap-6">
+                <div class="grid grid-cols-2 gap-12">
                     <?php
                     // Loop through each post in the query result set and display it as a small thumbnail
                     while ($query->have_posts()) : $query->the_post(); ?>
@@ -243,7 +273,7 @@ get_header();
         </div>
     </section>
     <!-- Interview posts slider -->
-    <section class="px-12 mb-12">
+    <section class="px-8 xl:px-12 mb-12">
         <!-- Heading for interview articles -->
         <h2 class="capitalize font-serif text-4xl font-black mb-6 after:block after:h-[8px] after:mt-2 after:w-full after:border-t-2 after:border-b">Nossas entrevistas</h2>
         <!-- Featured articles swiper -->
@@ -269,9 +299,9 @@ get_header();
                             <!-- Interview article link -->
                             <a class="group" href="<?php the_permalink(); ?>">
                                 <!-- Interview article content -->
-                                <div class="grid grid-cols-12 gap-12">
+                                <div class="grid grid-cols-1 justify-center items-center content-center lg:grid-cols-12 gap-12">
                                     <!-- Article title and author -->
-                                    <div class="col-span-4 flex flex-col gap-2 items-center justify-center content-center">
+                                    <div class="col-span-full lg:col-span-4 flex flex-col gap-2 items-center justify-center content-center">
                                         <h3 class="group-hover:opacity-80 transition-opacity font-bold font-sans capitalize text-3xl text-center">
                                             <?php the_title(); ?>
                                         </h3>
@@ -291,8 +321,8 @@ get_header();
                                         </div>
                                     </div>
                                     <!-- Article image and caption -->
-                                    <div class="col-span-8">
-                                        <img class="w-full h-[72vh] object-cover object-center" src="<?php echo get_the_post_thumbnail_url(); ?>" alt="<?php echo the_title(); ?>">
+                                    <div class="col-span-full lg:col-span-8 items-center justify-center content-center">
+                                        <img class="w-full h-[32rem] object-cover object-center" src="<?php echo get_the_post_thumbnail_url(); ?>" alt="<?php echo the_title(); ?>">
                                     </div>
                                 </div>
                             </a>
@@ -304,6 +334,16 @@ get_header();
                 // Reset post data to the original query
                 wp_reset_postdata();
                 ?>
+                <div class="swiper-button-next">
+                    <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-foreground">
+                        <path d="M6.1584 3.13508C6.35985 2.94621 6.67627 2.95642 6.86514 3.15788L10.6151 7.15788C10.7954 7.3502 10.7954 7.64949 10.6151 7.84182L6.86514 11.8418C6.67627 12.0433 6.35985 12.0535 6.1584 11.8646C5.95694 11.6757 5.94673 11.3593 6.1356 11.1579L9.565 7.49985L6.1356 3.84182C5.94673 3.64036 5.95694 3.32394 6.1584 3.13508Z" fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"></path>
+                    </svg>
+                </div>
+                <div class="swiper-button-prev">
+                    <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-foreground">
+                        <path d="M8.84182 3.13514C9.04327 3.32401 9.05348 3.64042 8.86462 3.84188L5.43521 7.49991L8.86462 11.1579C9.05348 11.3594 9.04327 11.6758 8.84182 11.8647C8.64036 12.0535 8.32394 12.0433 8.13508 11.8419L4.38508 7.84188C4.20477 7.64955 4.20477 7.35027 4.38508 7.15794L8.13508 3.15794C8.32394 2.95648 8.64036 2.94628 8.84182 3.13514Z" fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"></path>
+                    </svg>
+                </div>
             </div>
         </div>
         <!-- Initialize the Swiper plugin -->
@@ -311,11 +351,15 @@ get_header();
             var swiper = new Swiper(".interviewSwiper", {
                 slidesPerView: 1,
                 spaceBetween: 30,
+                navigation: {
+                    nextEl: ".swiper-button-next",
+                    prevEl: ".swiper-button-prev",
+                },
             });
         </script>
     </section>
     <!-- Magazine publications slider -->
-    <section class="px-12 mb-12">
+    <section class="px-8 xl:px-12 mb-12">
         <!-- Heading for the magazine publications slider -->
         <h2 class="capitalize font-serif text-4xl font-black mb-6 after:block after:h-[8px] after:mt-2 after:w-full after:border-t-2 after:border-b">Forca de Judas</h2>
         <!-- Swiper library slider -->
@@ -370,15 +414,15 @@ get_header();
         </script>
     </section>
     <!-- Bulk of posts -->
-    <section class="px-12 mb-12">
+    <section class="px-8 xl:px-12 mb-12">
         <!-- Heading for bulk of posts -->
         <h2 class="capitalize font-serif text-4xl font-black mb-6 after:block after:h-[8px] after:mt-2 after:w-full after:border-t-2 after:border-b">Nossos artigos</h2>
         <!-- Grid of articles -->
-        <div class="grid grid-cols-12 gap-12 divide-x">
+        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-12 gap-12 xl:divide-x">
             <!-- General posts -->
-            <div class="col-span-9">
+            <div class="col-span-full xl:col-span-9">
                 <!-- Three columns scheme -->
-                <div class="grid grid-cols-3 gap-12">
+                <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-12">
                     <?php
                     // Get the most recent post
                     $args = array(
@@ -392,7 +436,7 @@ get_header();
                     // Get the 8 first posts from CINEMA
                     $args = array(
                         'post_type' => 'post',
-                        'posts_per_page' => 6,
+                        'posts_per_page' => 8,
                         'post_status' => 'publish',
                         'category_name' => 'cinema',
                         'fields' => 'ids', // Only return the post IDs
@@ -485,7 +529,7 @@ get_header();
                 </div>
             </div>
             <!-- Opinion articles -->
-            <aside class="col-span-3 pl-12">
+            <aside class="col-span-full xl:col-span-3 pt-6 border-t xl:border-none xl:pl-12">
                 <?php
                 // Arguments to retrieve opinion articles
                 $args = array(
@@ -497,7 +541,7 @@ get_header();
                 // Query to retrieve opinion articles
                 $query = new WP_Query($args);
                 ?>
-                <div class="flex flex-col gap-12">
+                <div class="flex flex-col md:grid md:grid-cols-2 xl:flex gap-12">
                     <?php while ($query->have_posts()) : $query->the_post(); ?>
                         <?php
                         // Get the custom author image if it exists
@@ -533,7 +577,7 @@ get_header();
         </div>
     </section>
     <!-- Editorials slider -->
-    <section class="px-12 mb-12">
+    <section class="px-8 xl:px-12 mb-12">
         <!-- Heading for editorial articles -->
         <h2 class="capitalize font-serif text-4xl font-black mb-6 after:block after:h-[8px] after:mt-2 after:w-full after:border-t-2 after:border-b">O que pensamos</h2>
         <!-- Swiper slider wrapper -->
@@ -583,7 +627,7 @@ get_header();
         </script>
     </section>
     <!-- Featured posts slider -->
-    <section class="px-12 mb-12">
+    <section class="px-8 xl:px-12 mb-12">
         <!-- Heading for featured articles -->
         <h2 class="capitalize font-serif text-4xl font-black mb-6 after:block after:h-[8px] after:mt-2 after:w-full after:border-t-2 after:border-b">Ditaduras da América Latina</h2>
         <!-- Featured articles swiper -->
@@ -650,7 +694,7 @@ get_header();
         </script>
     </section>
     <!-- Academic publications grid -->
-    <section class="px-12 mb-12">
+    <section class="px-8 xl:px-12 mb-12">
         <!-- Heading for academic publications grid -->
         <h2 class="capitalize font-serif text-4xl font-black mb-6 after:block after:h-[8px] after:mt-2 after:w-full after:border-t-2 after:border-b">Pesquisas</h2>
         <div class="grid grid-cols-4 gap-12">
@@ -696,8 +740,6 @@ get_header();
             ?>
         </div>
     </section>
-    <!-- Vacination data from OpenDataSUS -->
-    <?php echo do_shortcode('[covid_vaccination]'); ?>
 </main>
 <?php
 get_footer();

@@ -104,6 +104,15 @@ if (!function_exists('judasasbotasde_setup')) :
 			)
 		);
 
+		// Add theme support for custom logo.
+		add_theme_support( 'custom-logo', array(
+			'height'      => 100,
+			'width'       => 400,
+			'flex-height' => true,
+			'flex-width'  => true,
+			'header-text' => array( 'site-title', 'site-description' ),
+		) );
+
 		// Add theme support for selective refresh for widgets.
 		add_theme_support('customize-selective-refresh-widgets');
 
@@ -350,3 +359,26 @@ function get_post_reading_time()
 	$reading_time = ceil($word_count / 200); // Assuming an average reading speed of 200 words per minute
 	return $reading_time;
 }
+
+/**
+ * Get search results.
+ *
+ * @param string $search_query Search query.
+ *
+ * @return array List of search results.
+ */
+function search_filter($query) {
+    if ($query->is_search && !is_admin()) {
+        $query->set('post_type', 'post');
+    }
+    return $query;
+}
+add_filter('pre_get_posts', 'search_filter');
+
+// Enable SVG file upload
+function allow_svg_upload( $mime_types ) {
+    $mime_types['svg'] = 'image/svg+xml';
+    return $mime_types;
+}
+add_filter( 'upload_mimes', 'allow_svg_upload' );
+

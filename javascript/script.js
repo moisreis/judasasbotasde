@@ -13,3 +13,14 @@ const images = document.querySelectorAll('img');
 images.forEach((image) => {
 	image.setAttribute('loading', 'lazy');
 });
+
+window.addEventListener('DOMContentLoaded', function () {
+	// Get the scrolltotop button
+	var scrolltotopButton = document.getElementById('scrolltotop');
+
+	// Add a click event listener to the scrolltotop button
+	scrolltotopButton.addEventListener('click', function () {
+		// Scroll to the top of the page
+		window.scrollTo({ top: 0, behavior: 'smooth' });
+	});
+});

@@ -15,5 +15,12 @@
 get_header();
 ?>
 
+<main class="p-12">
+    <section class="flex flex-col mb-12">
+        <h1 class="capitalize font-serif text-4xl font-black mb-6 after:block after:h-[8px] after:mt-2 after:w-full after:border-t-2 after:border-b"><?php the_title(); ?></h1>
+    </section>
+</main>
+
 <?php
 get_footer();
+?>
