@@ -14,12 +14,14 @@
 get_header();
 ?>
 
-<main class="p-12">
+<main class="p-8 xl:p-12">
     <!-- Contact links -->
     <section class="flex flex-col mb-12">
         <!-- Heading for contact links -->
-        <h1 class="capitalize font-serif text-4xl font-black mb-6 after:block after:h-[8px] after:mt-2 after:w-full after:border-t-2 after:border-b">Fale com o Judas</h1>
-        <div class="grid grid-cols-2 gap-12">
+        <header>
+            <h1 class="capitalize font-serif text-4xl font-black mb-6 after:block after:h-[8px] after:mt-2 after:w-full after:border-t-2 after:border-b">Fale com o Judas</h1>
+        </header>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
             <!-- General contact -->
             <p class="text-lg text-foreground/90"><span class="font-bold">Você é um leitor?</span> Ficamos muito felizes que queria falar conosco, porém, todos nós somos trabalhadores e por isso, é bem possível que leve um tempinho para respondermos, viu? Mas vamos responder sim! Só enviar um e-mail para: <a class="underline text-blue-600" href="mailto:contato@judasasbotasde.com.br">contato@judasasbotasde.com.br</a></p>
             <!-- Sources -->

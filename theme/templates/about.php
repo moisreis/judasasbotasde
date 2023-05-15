@@ -14,11 +14,13 @@
 
 get_header();
 ?>
-<main class="p-12">
+<main class="p-8 xl:p-12">
     <!-- About content -->
     <section class="flex flex-col mb-12">
         <!-- Heading for About page -->
-        <h1 class="capitalize font-serif text-4xl font-black mb-6 after:block after:h-[8px] after:mt-2 after:w-full after:border-t-2 after:border-b">Sobre nós</h1>
+        <header>
+            <h1 class="capitalize font-serif text-4xl font-black mb-6 after:block after:h-[8px] after:mt-2 after:w-full after:border-t-2 after:border-b">Sobre nós</h1>
+        </header>
         <!-- General info -->
         <p class="text-lg text-foreground/90">Fundado por Daniel Braz e Moisés Reis em fevereiro de 2020, o <b>JUDAS, As botas de</b> é um espaço independente e multidisciplinar formado por professores, estudantes e ativistas do Brasil e do mundo, cujo objetivo é a divulgação de informações, opiniões e conteúdo de relevância histórica, cultural e social. Somos voluntários e atuamos como uma associação sem fins lucrativos, promovendo nosso conteúdo através de artigos de opinião e científicos, entrevistas e colunas publicadas em nosso website e na Forca de Judas, nossa revista de divulgação científica bimestral gratuita</p>
     </section>
@@ -26,7 +28,7 @@ get_header();
     <section class="flex flex-col">
         <!-- Heading for contributors -->
         <h1 class="capitalize font-serif text-4xl font-black mb-6 after:block after:h-[8px] after:mt-2 after:w-full after:border-t-2 after:border-b">Nossos colaboradores</h1>
-        <div class="grid grid-cols-4 gap-12 mb-12">
+        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-12 mb-12">
             <?php
             // Get all users with the role of 'subscriber'
             $contributors = get_users(array('role' => 'subscriber'));

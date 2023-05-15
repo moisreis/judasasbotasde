@@ -65,10 +65,6 @@ get_header();
 
             echo '</div>';
 
-            // Swipper navigation
-            echo '<div class="swiper-button-next"><svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-foreground"><path d="M6.1584 3.13508C6.35985 2.94621 6.67627 2.95642 6.86514 3.15788L10.6151 7.15788C10.7954 7.3502 10.7954 7.64949 10.6151 7.84182L6.86514 11.8418C6.67627 12.0433 6.35985 12.0535 6.1584 11.8646C5.95694 11.6757 5.94673 11.3593 6.1356 11.1579L9.565 7.49985L6.1356 3.84182C5.94673 3.64036 5.95694 3.32394 6.1584 3.13508Z" fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"></path></svg></div>';
-            echo '<div class="swiper-button-prev"><svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-foreground"><path d="M8.84182 3.13514C9.04327 3.32401 9.05348 3.64042 8.86462 3.84188L5.43521 7.49991L8.86462 11.1579C9.05348 11.3594 9.04327 11.6758 8.84182 11.8647C8.64036 12.0535 8.32394 12.0433 8.13508 11.8419L4.38508 7.84188C4.20477 7.64955 4.20477 7.35027 4.38508 7.15794L8.13508 3.15794C8.32394 2.95648 8.64036 2.94628 8.84182 3.13514Z" fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"></path></svg></div>';
-
             // End of author div
             echo '</div>';
         }
@@ -78,9 +74,19 @@ get_header();
             var swiper = new Swiper(".authorSwiper", {
                 slidesPerView: 8,
                 spaceBetween: 32,
-                navigation: {
-                    nextEl: ".swiper-button-next",
-                    prevEl: ".swiper-button-prev",
+                breakpoints: {
+                    "@0.00": {
+                        slidesPerView: 3,
+                        spaceBetween: 12,
+                    },
+                    "@0.75": {
+                        slidesPerView: 6,
+                        spaceBetween: 24,
+                    },
+                    "@1.00": {
+                        slidesPerView: 8,
+                        spaceBetween: 24,
+                    },
                 },
             });
         </script>
@@ -146,7 +152,7 @@ get_header();
         <h2 class="capitalize font-serif text-4xl font-black mb-6 after:block after:h-[8px] after:mt-2 after:w-full after:border-t-2 after:border-b">Críticas de Cinema</h2>
         <div class="grid grid-cols-1 md:grid-cols-12 gap-12">
             <!-- New cinema post column -->
-            <div class="col-span-full lg:col-span-8 grid grid-cols-1 lg:grid-cols-2 gap-12">
+            <div class="col-span-full lg:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-12">
                 <?php
                 // Retrieve the 2 latest posts
                 $args = array(
@@ -200,7 +206,7 @@ get_header();
                 <?php } ?>
             </div>
             <!-- Cinema articles section -->
-            <div class="col-span-full lg:col-span-4">
+            <div class="col-span-full lg:col-span-4 border-t pt-6 xl:border-none xl:pt-0">
                 <?php
                 // Set the query arguments to retrieve only posts that belong to the 'cinema' category and limit the number of posts to 8
                 $args = array(
@@ -276,7 +282,7 @@ get_header();
     <section class="px-8 xl:px-12 mb-12">
         <!-- Heading for interview articles -->
         <h2 class="capitalize font-serif text-4xl font-black mb-6 after:block after:h-[8px] after:mt-2 after:w-full after:border-t-2 after:border-b">Nossas entrevistas</h2>
-        <!-- Featured articles swiper -->
+        <!-- Interview articles swiper -->
         <div class="swiper interviewSwiper">
             <div class="swiper-wrapper">
                 <?php
@@ -350,7 +356,7 @@ get_header();
         <script id="swiper-handler">
             var swiper = new Swiper(".interviewSwiper", {
                 slidesPerView: 1,
-                spaceBetween: 30,
+                spaceBetween: 32,
                 navigation: {
                     nextEl: ".swiper-button-next",
                     prevEl: ".swiper-button-prev",
@@ -410,6 +416,20 @@ get_header();
             var swiper = new Swiper(".magazineSwiper", {
                 slidesPerView: 4,
                 spaceBetween: 30,
+                breakpoints: {
+                    "@0.00": {
+                        slidesPerView: 1,
+                        spaceBetween: 12,
+                    },
+                    "@0.75": {
+                        slidesPerView: 2,
+                        spaceBetween: 24,
+                    },
+                    "@1.00": {
+                        slidesPerView: 4,
+                        spaceBetween: 24,
+                    },
+                },
             });
         </script>
     </section>
@@ -541,15 +561,15 @@ get_header();
                 // Query to retrieve opinion articles
                 $query = new WP_Query($args);
                 ?>
-                <div class="flex flex-col md:grid md:grid-cols-2 xl:flex gap-12">
+                <div class="grid grid-cols-2 xl:flex-col xl:flex gap-12">
                     <?php while ($query->have_posts()) : $query->the_post(); ?>
                         <?php
                         // Get the custom author image if it exists
                         $author_image = get_the_author_meta('author_image', get_the_author_meta('ID'));
                         ?>
                         <!-- Individual post -->
-                        <div class="group grid grid-cols-6 gap-2">
-                            <div class="flex flex-col gap-2 col-span-4 justify-start content-center">
+                        <div class="group flex flex-col xl:grid xl:grid-cols-6 gap-2">
+                            <div class="flex flex-col order-2 xl:order-1 gap-2 xl:col-span-4 justify-start content-center">
                                 <!-- Author name -->
                                 <h5 class="text-xs text-foreground/60"><?php the_author(); ?></h5>
                                 <a href="<?php the_permalink(); ?>">
@@ -557,7 +577,7 @@ get_header();
                                     <h4 class="group-hover:opacity-80 transition-opacity font-bold font-sans capitalize text-sm"><?php the_title(); ?></h4>
                                 </a>
                             </div>
-                            <div class="flex flex-col gap-2 col-span-2 justify-center items-center content-end">
+                            <div class="flex flex-col order-1 xl:order-2 gap-2 xl:col-span-2 justify-start xl:justify-center xl:items-center content-end">
                                 <?php if (!empty($author_image)) : // Check if the author has a custom profile picture 
                                 ?>
                                     <!-- Custom author image -->
@@ -623,6 +643,20 @@ get_header();
             var swiper = new Swiper(".editorialsSwiper", {
                 slidesPerView: 4,
                 spaceBetween: 30,
+                breakpoints: {
+                    "@0.00": {
+                        slidesPerView: 1,
+                        spaceBetween: 12,
+                    },
+                    "@0.75": {
+                        slidesPerView: 2,
+                        spaceBetween: 24,
+                    },
+                    "@1.00": {
+                        slidesPerView: 4,
+                        spaceBetween: 24,
+                    },
+                },                
             });
         </script>
     </section>
@@ -647,15 +681,19 @@ get_header();
                         // Get the custom author image if it exists
                         $author_image = get_the_author_meta('author_image', get_the_author_meta('ID'));
                         ?>
-                        <!-- Featured Swiper slide -->
+                        <!-- Interview Swiper slide -->
                         <div class="swiper-slide">
-                            <!-- Featured article item -->
+                            <!-- Interview article link -->
                             <a class="group" href="<?php the_permalink(); ?>">
-                                <div class="grid grid-cols-12 gap-12">
+                                <!-- Interview article content -->
+                                <div class="grid grid-cols-1 justify-center items-center content-center lg:grid-cols-12 gap-12">
                                     <!-- Article title and author -->
-                                    <div class="col-span-4 flex flex-col gap-2 items-center justify-center content-center">
-                                        <h3 class="group-hover:opacity-80 transition-opacity font-bold font-sans capitalize text-3xl text-center"><?php the_title(); ?></h3>
+                                    <div class="col-span-full lg:col-span-4 flex flex-col gap-2 items-center justify-center content-center">
+                                        <h3 class="group-hover:opacity-80 transition-opacity font-bold font-sans capitalize text-3xl text-center">
+                                            <?php the_title(); ?>
+                                        </h3>
                                         <div class="flex flex-row gap-2 justify-start content-center items-center mt-1">
+                                            <!-- Loads the author picture -->
                                             <?php if (!empty($author_image)) : // Check if the author has a custom profile picture 
                                             ?>
                                                 <!-- Custom author image -->
@@ -670,8 +708,8 @@ get_header();
                                         </div>
                                     </div>
                                     <!-- Article image and caption -->
-                                    <div class="col-span-8">
-                                        <img class="w-full h-[72vh] object-cover object-center" src="<?php echo get_the_post_thumbnail_url(); ?>" alt="<?php echo the_title(); ?>">
+                                    <div class="col-span-full lg:col-span-8 items-center justify-center content-center">
+                                        <img class="w-full h-[32rem] object-cover object-center" src="<?php echo get_the_post_thumbnail_url(); ?>" alt="<?php echo the_title(); ?>">
                                     </div>
                                 </div>
                             </a>
@@ -680,7 +718,7 @@ get_header();
                     endwhile;
                 endif;
 
-                // Reset the query to avoid conflicts with other queries
+                // Reset post data to the original query
                 wp_reset_postdata();
                 ?>
             </div>
@@ -689,7 +727,7 @@ get_header();
         <script id="swiper-handler">
             var swiper = new Swiper(".featuredSwiper", {
                 slidesPerView: 1,
-                spaceBetween: 30,
+                spaceBetween: 32,
             });
         </script>
     </section>
@@ -697,7 +735,7 @@ get_header();
     <section class="px-8 xl:px-12 mb-12">
         <!-- Heading for academic publications grid -->
         <h2 class="capitalize font-serif text-4xl font-black mb-6 after:block after:h-[8px] after:mt-2 after:w-full after:border-t-2 after:border-b">Pesquisas</h2>
-        <div class="grid grid-cols-4 gap-12">
+        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-12">
             <?php
 
             // Query to retrieve featured posts

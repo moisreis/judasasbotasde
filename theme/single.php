@@ -12,14 +12,14 @@ get_header();
 ?>
 
 <!-- Main content -->
-<main class="grid grid-cols-12 py-12">
-    <aside class="col-span-2"></aside>
+<main class="grid grid-cols-1 xl:grid-cols-12 p-8 xl:py-12 xl:px-0">
+    <aside class="hidden lg:flex col-span-2"></aside>
     <?php while (have_posts()) : the_post(); ?>
         <section class="col-span-6">
             <!-- Post title -->
-            <h1 class="font-display text-5xl font-black mb-12"><?php the_title(); ?></h1>
+            <h1 class="font-display text-3xl lg:text-4xl xl:text-5xl font-black mb-6"><?php the_title(); ?></h1>
             <!-- Share buttons -->
-            <div class="mb-6 flex items-center justify-start gap-6">
+            <div class="mb-6 flex flex-wrap items-center justify-start gap-3 xl:gap-6">
                 <?php echo do_shortcode('[social_sharing]'); ?>
                 <button class="bg-white border border-neutral-300 focus:outline-none hover:bg-neutral-100 font-medium rounded-3xl max-w-fit max-h-fit text-sm flex flex-row gap-2 justify-center content-center items-center px-3 py-1.5">
                     <span>Copiar</span>
@@ -31,8 +31,8 @@ get_header();
             <!-- Post thumbnail -->
             <?php if (has_post_thumbnail()) : ?>
                 <figure class="mb-6">
-                    <?php the_post_thumbnail('large', array('class' => 'object-cover h-96')); ?>
-                    <figcaption class="text-foreground/80 uppercase font-mono text-xs mt-2"><?php the_post_thumbnail_caption(); ?></figcaption>
+                    <?php the_post_thumbnail('large', array('class' => 'object-cover h-64 sm:h-96')); ?>
+                    <figcaption class="text-foreground/80 uppercase text-xs mt-2"><?php the_post_thumbnail_caption(); ?></figcaption>
                 </figure>
             <?php endif; ?>
             <!-- Post meta -->
@@ -56,22 +56,22 @@ get_header();
                 <a class="mb-2" href="<?php echo get_author_posts_url(get_the_author_meta('ID')); ?>">
                     <span class="font-bold uppercase text-sm hover:opacity-70 transition-opacity"><?php echo get_the_author(); ?></span>
                 </a>
-                <div class="flex flex-row gap-2 content-center justify-start items-center">
+                <div class="flex flex-col sm:flex-row gap-2 content-center justify-start sm:items-center">
                     <time class="text-xs text-foreground/80 uppercase" datetime="<?php echo get_the_date('c'); ?>"><?php echo get_the_date(); ?></time>
-                    <span class="text-sm text-foreground/80 uppercase">·</span>
+                    <span class="hidden sm:block text-sm text-foreground/80 uppercase">·</span>
                     <?php if (get_the_modified_time('F j, Y') !== get_the_time('F j, Y')) : ?>
                         <time class="text-xs text-foreground/80 uppercase"><?php echo __('Última atualização em', 'text-domain') . ' ' . get_the_modified_time('F j, Y'); ?></time>
                     <?php endif; ?>
-                    <span class="text-sm text-foreground/80 uppercase">·</span>
+                    <span class="hidden sm:block text-sm text-foreground/80 uppercase">·</span>
                     <span class="uppercase text-foreground/80 text-xs"><?php echo get_post_reading_time(); ?> min</span>
                 </div>
             </div>
             <!-- Post content -->
-            <article class="prose prose-a:text-blue-600 prose-a:no-underline transition-colors max-w-none mb-12 prose-xl font-serif text-foreground pt-6 before:block before:h-[8px] before:mb-6 before:w-full before:border-t-2 before:border-b">
+            <article class="prose prose-a:text-blue-600 prose-a:no-underline transition-colors max-w-none mb-12 prose-lg font-serif text-foreground pt-6 before:block before:h-[8px] before:mb-6 before:w-full before:border-t-2 before:border-b">
                 <?php the_content(); ?>
             </article>
             <!-- Share buttons -->
-            <div class="mb-12 flex items-center justify-start gap-6">
+            <div class="mb-6 flex flex-wrap items-center justify-start gap-3 xl:gap-6">
                 <?php echo do_shortcode('[social_sharing]'); ?>
                 <button class="bg-white border border-neutral-300 focus:outline-none hover:bg-neutral-100 font-medium rounded-3xl max-w-fit max-h-fit text-sm flex flex-row gap-2 justify-center content-center items-center px-3 py-1.5">
                     <span>Copiar</span>
@@ -128,7 +128,7 @@ get_header();
             <!-- Related articles -->
             <div class="mb-12">
                 <h3 class="font-display text-4xl font-black mb-6 after:block after:h-[8px] after:mt-2 after:w-full after:border-t-2 after:border-b capitalize">Leia também</h3>
-                <div class="grid grid-cols-2 gap-12">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
                     <?php
                     // Retrieve 4 related posts from the same category
                     $args = array(
@@ -184,7 +184,7 @@ get_header();
             </div>
         </section>
     <?php endwhile; ?>
-    <aside class="col-span-4 flex flex-col content-center justify-center px-24">
+    <aside class="hidden lg:flex">
     </aside>
 </main>
 

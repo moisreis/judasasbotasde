@@ -334,10 +334,10 @@ function social_sharing_shortcode()
 	);
 
 	// Create the HTML for the social sharing buttons
-	$output = '<div class="flex items-center justify-start gap-6">';
+	$output = '<div class="flex flex-wrap items-center justify-start gap-3 xl:gap-6">';
 	foreach ($social_networks as $network => $url) {
 		$output .= '<button class="bg-white border border-neutral-300 focus:outline-none hover:bg-neutral-100 font-medium rounded-3xl max-w-fit max-h-fit text-sm flex flex-row gap-2 justify-center content-center items-center px-3 py-1.5">';
-		$output .= '<a href="' . $url . '" target="_blank">' . $network . '</a>';
+		$output .= '<a href="' . $url . '" target="_blank"><span>' . $network . '</span></a>';
 		$output .= '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">';
 		$output .= '<path stroke-linecap="round" stroke-linejoin="round" d="M15 15l6-6m0 0l-6-6m6 6H9a6 6 0 000 12h3" />';
 		$output .= '</svg>';

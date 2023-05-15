@@ -11,7 +11,7 @@
 get_header();
 ?>
 
-<main class="p-12">
+<main class="p-8 xl:p-12">
     <div class="flex flex-col gap-4">
         <!-- Author archive header -->
         <header class="mb-6 after:block after:h-[8px] after:mt-2 after:w-full after:border-t-2 after:border-b">
@@ -19,7 +19,7 @@ get_header();
         </header>
         <?php if (have_posts()) : ?>
             <!-- Author archive grid -->
-            <div class="grid grid-cols-2 gap-16">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-16">
                 <?php while (have_posts()) : the_post(); ?>
                     <?php
                     // Get the custom author image if it exists
@@ -27,8 +27,8 @@ get_header();
                     ?>
                     <!-- Individual post -->
                     <a class="group" href="<?php the_permalink(); ?>">
-                        <div class="grid grid-cols-12 gap-4">
-                            <div class="flex flex-col gap-4 col-span-6">
+                        <div class="flex flex-col xl:grid xl:grid-cols-12 gap-4">
+                            <div class="order-2 xl:order-1 flex flex-col gap-4 col-span-6">
                                 <h2 class="text-lg group-hover:opacity-80 transition-opacity font-bold font-sans !underline-none"><?php the_title(); ?></h2>
                                 <div class="flex flex-row justify-start gap-2 content-center items-center">
                                     <?php if (!empty($author_image)) : // Check if the author has a custom profile picture 
@@ -47,7 +47,7 @@ get_header();
                                     <p><?php the_excerpt(); ?></p>
                                 </div>
                             </div>
-                            <div class="col-span-6">
+                            <div class="order-1 xl:order-2 col-span-6">
                                 <?php if (has_post_thumbnail()) : ?>
                                     <img style="min-width:full;min-height:16rem;max-height:12rem;object-position:center;object-fit:cover" src="<?php the_post_thumbnail_url('medium'); ?>" alt="<?php the_title_attribute(); ?>">
                                 <?php endif; ?>
