@@ -240,7 +240,7 @@ function add_author_fields($user)
 	<h3><?php _e('Custom Fields'); ?></h3>
 	<table class="form-table">
 		<tr>
-			<th><label for="author_image"><?php _e('Author Image'); ?></label></th>
+			<th><label for="author_image"><?php _e('Foto de perfil'); ?></label></th>
 			<td>
 				<?php
 				$author_image = get_the_author_meta('author_image', $user->ID);
@@ -250,7 +250,7 @@ function add_author_fields($user)
 				?>
 				<input type="text" name="author_image" id="author_image" value="<?php echo esc_attr(get_the_author_meta('author_image', $user->ID)); ?>" class="regular-text">
 				<br>
-				<span class="description"><?php _e('Enter the URL of the author image.'); ?></span>
+				<span class="description"><?php _e('Insira a URL da imagem.'); ?></span>
 			</td>
 		</tr>
 	</table>
@@ -286,8 +286,10 @@ add_action('edit_user_profile_update', 'save_author_fields');
  */
 function add_user_custom_fields($user_contact)
 {
-	$user_contact['position'] = __('Position');
-	$user_contact['location'] = __('Location');
+	$user_contact['position'] = __('Posição');
+	$user_contact['location'] = __('Local');
+	$user_contact['twitter'] = __('Twitter');
+	$user_contact['instagram'] = __('Instagram');
 	return $user_contact;
 }
 

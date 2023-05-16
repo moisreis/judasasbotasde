@@ -20,7 +20,7 @@ get_header();
     <section class="flex flex-col mb-12">
         <!-- Heading for Privacy Policy page -->
         <header>
-            <h1 class="capitalize font-serif text-4xl font-black mb-6 after:block after:h-[8px] after:mt-2 after:w-full after:border-t-2 after:border-b">Política de Privacidade</h1>
+            <h1 class="capitalize font-serif text-4xl font-black mb-6 after:block after:h-[8px] after:mt-2 after:w-full after:border-t-2 after:border-b after:border-t-foreground">Política de Privacidade</h1>
         </header>
         <!-- General info -->
         <p class="text-lg text-foreground/90 mt-4"><b>JUDAS, As botas de</b> é uma plataforma comprometida com a proteção da privacidade e dos dados pessoais de seus usuários. Coletamos e utilizamos informações de acordo com as leis e regulamentos aplicáveis, com o objetivo de fornecer uma experiência segura e personalizada a todos que utilizam nossos serviços.</p>

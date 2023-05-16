@@ -20,7 +20,7 @@ get_header();
     <section class="flex flex-col mb-12">
         <!-- Heading for Terms of Use page -->
         <header>
-            <h1 class="capitalize font-serif text-4xl font-black mb-6 after:block after:h-[8px] after:mt-2 after:w-full after:border-t-2 after:border-b">Termos de uso</h1>
+            <h1 class="capitalize font-serif text-4xl font-black mb-6 after:block after:h-[8px] after:mt-2 after:w-full after:border-t-2 after:border-b after:border-t-foreground">Termos de uso</h1>
         </header>
         <!-- General info -->
         <p class="text-lg text-foreground/90 mt-4"> Bem-vindo à plataforma <b>JUDAS, As botas de</b>. Ao acessar e utilizar nossos serviços, você concorda com nossos termos de uso e política de privacidade, de acordo com a legislação brasileira, incluindo a Lei Geral de Proteção de Dados Pessoais (LGPD).</p>

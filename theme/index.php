@@ -93,7 +93,7 @@ get_header();
     </section>
     <!-- Main articles -->
     <section class="px-8 xl:px-12 mb-12">
-        <h2 class="capitalize font-serif text-4xl font-black mb-6 after:block after:h-[8px] after:mt-2 after:w-full after:border-t-2 after:border-b">Mais recente</h2>
+        <h2 class="capitalize font-serif text-4xl font-black mb-6 after:block after:h-[8px] after:mt-2 after:w-full after:border-t-2 after:border-b after:border-t-foreground">Mais recente</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-12">
             <?php
             // Retrieve the two most recent posts
@@ -149,7 +149,7 @@ get_header();
     </section>
     <!-- Cinema content -->
     <section class="px-8 xl:px-12 mb-12">
-        <h2 class="capitalize font-serif text-4xl font-black mb-6 after:block after:h-[8px] after:mt-2 after:w-full after:border-t-2 after:border-b">Críticas de Cinema</h2>
+        <h2 class="capitalize font-serif text-4xl font-black mb-6 after:block after:h-[8px] after:mt-2 after:w-full after:border-t-2 after:border-b after:border-t-foreground">Críticas de Cinema</h2>
         <div class="grid grid-cols-1 md:grid-cols-12 gap-12">
             <!-- New cinema post column -->
             <div class="col-span-full lg:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-12">
@@ -281,7 +281,7 @@ get_header();
     <!-- Interview posts slider -->
     <section class="px-8 xl:px-12 mb-12">
         <!-- Heading for interview articles -->
-        <h2 class="capitalize font-serif text-4xl font-black mb-6 after:block after:h-[8px] after:mt-2 after:w-full after:border-t-2 after:border-b">Nossas entrevistas</h2>
+        <h2 class="capitalize font-serif text-4xl font-black mb-6 after:block after:h-[8px] after:mt-2 after:w-full after:border-t-2 after:border-b after:border-t-foreground">Nossas entrevistas</h2>
         <!-- Interview articles swiper -->
         <div class="swiper interviewSwiper">
             <div class="swiper-wrapper">
@@ -367,7 +367,7 @@ get_header();
     <!-- Magazine publications slider -->
     <section class="px-8 xl:px-12 mb-12">
         <!-- Heading for the magazine publications slider -->
-        <h2 class="capitalize font-serif text-4xl font-black mb-6 after:block after:h-[8px] after:mt-2 after:w-full after:border-t-2 after:border-b">Forca de Judas</h2>
+        <h2 class="capitalize font-serif text-4xl font-black mb-6 after:block after:h-[8px] after:mt-2 after:w-full after:border-t-2 after:border-b after:border-t-foreground">A Forca de Judas</h2>
         <!-- Swiper library slider -->
         <div class="swiper magazineSwiper">
             <div class="swiper-wrapper" id="magazine-posts-container">
@@ -436,7 +436,7 @@ get_header();
     <!-- Bulk of posts -->
     <section class="px-8 xl:px-12 mb-12">
         <!-- Heading for bulk of posts -->
-        <h2 class="capitalize font-serif text-4xl font-black mb-6 after:block after:h-[8px] after:mt-2 after:w-full after:border-t-2 after:border-b">Nossos artigos</h2>
+        <h2 class="capitalize font-serif text-4xl font-black mb-6 after:block after:h-[8px] after:mt-2 after:w-full after:border-t-2 after:border-b after:border-t-foreground">Nossos artigos</h2>
         <!-- Grid of articles -->
         <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-12 gap-12 xl:divide-x">
             <!-- General posts -->
@@ -599,7 +599,7 @@ get_header();
     <!-- Editorials slider -->
     <section class="px-8 xl:px-12 mb-12">
         <!-- Heading for editorial articles -->
-        <h2 class="capitalize font-serif text-4xl font-black mb-6 after:block after:h-[8px] after:mt-2 after:w-full after:border-t-2 after:border-b">O que pensamos</h2>
+        <h2 class="capitalize font-serif text-4xl font-black mb-6 after:block after:h-[8px] after:mt-2 after:w-full after:border-t-2 after:border-b after:border-t-foreground">O que pensamos</h2>
         <!-- Swiper slider wrapper -->
         <div class="swiper editorialsSwiper">
             <div class="swiper-wrapper">
@@ -663,7 +663,7 @@ get_header();
     <!-- Featured posts slider -->
     <section class="px-8 xl:px-12 mb-12">
         <!-- Heading for featured articles -->
-        <h2 class="capitalize font-serif text-4xl font-black mb-6 after:block after:h-[8px] after:mt-2 after:w-full after:border-t-2 after:border-b">Ditaduras da América Latina</h2>
+        <h2 class="capitalize font-serif text-4xl font-black mb-6 after:block after:h-[8px] after:mt-2 after:w-full after:border-t-2 after:border-b after:border-t-foreground">Ditaduras da América Latina</h2>
         <!-- Featured articles swiper -->
         <div class="swiper featuredSwiper">
             <div class="swiper-wrapper">
@@ -734,7 +734,7 @@ get_header();
     <!-- Academic publications grid -->
     <section class="px-8 xl:px-12 mb-12">
         <!-- Heading for academic publications grid -->
-        <h2 class="capitalize font-serif text-4xl font-black mb-6 after:block after:h-[8px] after:mt-2 after:w-full after:border-t-2 after:border-b">Pesquisas</h2>
+        <h2 class="capitalize font-serif text-4xl font-black mb-6 after:block after:h-[8px] after:mt-2 after:w-full after:border-t-2 after:border-b after:border-t-foreground">Pesquisas</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-12">
             <?php
 

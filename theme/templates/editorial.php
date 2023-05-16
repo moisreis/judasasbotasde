@@ -20,7 +20,7 @@ get_header();
     <section class="flex flex-col mb-12">
         <!-- Heading for Editorial page -->
         <header>
-            <h1 class="capitalize font-serif text-4xl font-black mb-6 after:block after:h-[8px] after:mt-2 after:w-full after:border-t-2 after:border-b">Linha editorial</h1>
+            <h1 class="capitalize font-serif text-4xl font-black mb-6 after:block after:h-[8px] after:mt-2 after:w-full after:border-t-2 after:border-b after:border-t-foreground">Linha editorial</h1>
         </header>
         <!-- General info -->
         <p class="text-lg text-foreground/90 mb-4">O <b>JUDAS, As botas de</b> tem, enquanto princípio: a defesa e divulgação da ciência; o respeito a pluralidade epistemológica; a defesa da democracia e da liberdade de expressão e associação; a defesa da diversidade de gênero, raça e ideologia; a manutenção da laicidade do estado; a solidariedade para com a luta da classe dos trabalhadores e a crença em sua sociedade mais justa, baseada na equidade e diversidade.</p>

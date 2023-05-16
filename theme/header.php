@@ -50,7 +50,7 @@
 	<!-- Top navigation menu -->
 	<header class="grid grid-cols-12 outline outline-offset-4 outline-1 outline-[#e5e7eb] mb-6">
 		<!-- Hamburguer menu -->
-		<nav class="col-span-3 xl:col-span-1 flex flex-row justify-center content-center items-center border-r border-b-2 py-2">
+		<nav class="col-span-3 xl:col-span-1 flex flex-row justify-center content-center items-center border-r border-b-2 border-b-foreground py-2">
 			<!-- Hamburguer menu button -->
 			<button data-dropdown-toggle="hamburguer-menu" data-dropdown-placement="bottom">
 				<!-- Hamburguer menu icon -->
@@ -60,7 +60,7 @@
 			</button>
 			<!-- Hamburguer menu dropdown -->
 			<div id="hamburguer-menu" class="shadow-lg flex flex-col justify-start content-center gap-6 hidden bg-white border z-[999] p-6">
-				<!-- Hamburguer logo -->
+				<!-- Hamburguer logo
 				<div id="hamburguer-logo" class="flex flex-row justify-start pb-6 border-b">
 					<a href="<?php echo site_url(); ?>">
 						<?php
@@ -69,7 +69,7 @@
 						?>
 						<img class="w-16 h-16" src="<?php echo esc_url($logo_url); ?>" alt="">
 					</a>
-				</div>
+				</div> -->
 				<!-- Hamburguer links -->
 				<?php
 				wp_nav_menu(array(
@@ -135,7 +135,7 @@
 			</div>
 		</nav>
 		<!-- Search menu -->
-		<nav class="col-span-3 xl:col-span-1 flex flex-row justify-center content-center items-center border-r border-b-2 py-2">
+		<nav class="col-span-3 xl:col-span-1 flex flex-row justify-center content-center items-center border-r border-b-2 border-b-foreground py-2">
 			<!-- Search menu button -->
 			<button data-dropdown-toggle="search-menu" data-dropdown-placement="bottom" class="relative" id="search-button" aria-expanded="false">
 				<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-foreground">
@@ -152,7 +152,7 @@
 			</div>
 		</nav>
 		<!-- Main menu -->
-		<nav class="hidden xl:flex xl:col-span-8 gap-6 flex-row justify-center content-center items-center border-r border-b-2 py-2 ">
+		<nav class="hidden xl:flex xl:col-span-8 gap-6 flex-row justify-center content-center items-center border-r border-b-2 border-b-foreground py-2 ">
 			<?php
 			wp_nav_menu(array(
 				'menu' => 'Category',
@@ -165,13 +165,13 @@
 			?>
 		</nav>
 		<!-- Login button -->
-		<nav class="col-span-3 xl:col-span-1 flex flex-row justify-center content-center items-center border-r border-b-2 py-2">
+		<nav class="col-span-3 xl:col-span-1 flex flex-row justify-center content-center items-center border-r border-b-2 border-b-foreground py-2">
 			<a href="<?php echo site_url() . '/wp-login.php'; ?>">
 				<button class="hover:opacity-80 transition-opacity text-xs uppercase font-medium tracking-widest">Entrar</button>
 			</a>
 		</nav>
 		<!-- Email button -->
-		<nav class="col-span-3 xl:col-span-1 flex flex-row justify-center content-center items-center border-b-2 py-2">
+		<nav class="col-span-3 xl:col-span-1 flex flex-row justify-center content-center items-center border-b-2 border-b-foreground py-2">
 			<a href="https://mail.hostinger.com/">
 				<button class="hover:opacity-80 transition-opacity text-xs uppercase font-medium tracking-widest">E-mail</button>
 			</a>

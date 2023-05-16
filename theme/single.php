@@ -82,7 +82,7 @@ get_header();
             </div>
             <!-- Donations -->
             <div class="mb-12">
-                <h3 class="font-display text-4xl font-black mb-6 after:block after:h-[8px] after:mt-2 after:w-full after:border-t-2 after:border-b capitalize">Preciamos de você</h3>
+                <h3 class="font-display text-4xl font-black mb-6 after:block after:h-[8px] after:mt-2 after:w-full after:border-t-2 after:border-b after:border-t-foreground capitalize">Precisamos de você</h3>
                 <div class="border p-4 outline outline-offset-4 outline-1 outline-[#e5e7eb] bg-neutral-100">
                     <p class="text-base mb-4">...já que você chegou até aqui, temos um pequeno favor a pedir. Desde que começamos a publicar, em 2020, o Brasil vem enfrentando ameaças autoritárias dia sim e dia também, fome, miséria e violência política - todas fomentadas por um presidente que faz pouco das mais de 600 mil vítimas da pandemia de covid-19. Queremos continuar produzindo um conteúdo combativo e de qualidade em tempos tão conturbados.</p>
                     <p class="text-base mb-4">Mesmo em tempos de crise, toda a nossa equipe trabalha gratuitamente e não cobramos absolutamente nada de nossos leitores - fora o tempo. Fazemos isso porque acreditamos na luta contra a desinformação e o fascismo, e também acreditamos que quanto mais livre é o conhecimento, maior é o número de pessoas que podem acompanhar os acontecimentos que moldam o nosso mundo, compreender o seu impacto nas comunidades e inspirar-se para tomar medidas significativas. Milhões podem se beneficiar do acesso aberto a um conteúdo relevante, confiável e de qualidade, independentemente da sua capacidade de pagar por isso.</p>
@@ -98,7 +98,7 @@ get_header();
             </div>
             <!-- ABNT references div -->
             <div class="mb-12">
-                <h3 class="font-display text-4xl font-black mb-6 after:block after:h-[8px] after:mt-2 after:w-full after:border-t-2 after:border-b capitalize">Cite-nos</h3>
+                <h3 class="font-display text-4xl font-black mb-6 after:block after:h-[8px] after:mt-2 after:w-full after:border-t-2 after:border-b after:border-t-foreground capitalize">Cite-nos</h3>
                 <!-- ABNT content -->
                 <div class="mb-6" id="abnt-reference"><?php echo do_shortcode('[abnt_reference]'); ?></div>
                 <!-- Copy button -->
@@ -127,7 +127,7 @@ get_header();
             </div>
             <!-- Related articles -->
             <div class="mb-12">
-                <h3 class="font-display text-4xl font-black mb-6 after:block after:h-[8px] after:mt-2 after:w-full after:border-t-2 after:border-b capitalize">Leia também</h3>
+                <h3 class="font-display text-4xl font-black mb-6 after:block after:h-[8px] after:mt-2 after:w-full after:border-t-2 after:border-b after:border-t-foreground capitalize">Leia também</h3>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
                     <?php
                     // Retrieve 4 related posts from the same category

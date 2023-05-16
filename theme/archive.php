@@ -13,12 +13,12 @@ get_header();
 
 <main class="p-8 xl:p-12">
     <div class="flex flex-col gap-4">
-        <!-- Author archive header -->
-        <header class="mb-6 after:block after:h-[8px] after:mt-2 after:w-full after:border-t-2 after:border-b">
+        <!-- Category archive header -->
+        <header class="mb-6 after:block after:h-[8px] after:mt-2 after:w-full after:border-t-2 after:border-b after:border-t-foreground">
             <h1 class="capitalize font-serif text-4xl font-black"><?php single_cat_title(); ?></h1>
         </header>
         <?php if (have_posts()) : ?>
-            <!-- Author archive grid -->
+            <!-- Category archive grid -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-16">
                 <?php while (have_posts()) : the_post(); ?>
                     <?php

@@ -14,7 +14,7 @@ get_header();
 <main class="p-8 xl:p-12">
     <div class="flex flex-col gap-4">
         <!-- Search results header -->
-        <header class="mb-6 after:block after:h-[8px] after:mt-2 after:w-full after:border-t-2 after:border-b">
+        <header class="mb-6 after:block after:h-[8px] after:mt-2 after:w-full after:border-t-2 after:border-b after:border-t-foreground">
             <h1 class="capitalize font-serif text-4xl font-black"><?php printf(esc_html__('Resultados para: %s', 'JUDAS,_As_botas_de'), '<span>' . get_search_query() . '</span>'); ?></h1>
         </header>
         <?php if (have_posts()) : ?>

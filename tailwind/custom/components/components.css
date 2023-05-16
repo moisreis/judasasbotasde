@@ -58,7 +58,10 @@ figcaption {
 	@apply !text-xs !text-foreground/80
 }
 blockquote {
-	@apply !text-foreground/80 border px-4 !rounded-none !border-l-foreground !not-italic
+	@apply !border-none !rounded-none !not-italic 
+}
+blockquote p {
+	@apply !text-foreground/70 !not-italic !px-12 !font-normal
 }
 blockquote p::after, 
 blockquote p::before {
