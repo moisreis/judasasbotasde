@@ -17,83 +17,9 @@ get_header();
 ?>
 <!-- Start of main page -->
 <main id="index">
-    <!-- Display authors carousel -->
-    <section class="px-8 xl:px-12 flex flex-row justify-between mb-12">
-        <?php
-        // Arguments to get authors with highest post counts
-        $args = array(
-            'orderby' => 'post_count', // Sort by post count
-            'order' => 'DESC', // Sort in descending order
-            'number' => 12 // Get maximum of 12 authors
-        );
-
-        // Retrieve authors with the given arguments
-        $authors = get_users($args);
-
-        // Check if there are any authors with more than 1 post
-        if (!empty($authors)) {
-
-            // Start of author div
-            echo '<!-- Author div -->';
-            echo '<div class="swiper authorSwiper">';
-            echo '<div class="swiper-wrapper justify-between">';
-
-            // Display authors carousel if authors with more than 1 post exist
-            foreach ($authors as $author) {
-                $author_id = $author->ID;
-                $author_link = get_author_posts_url($author_id);
-
-                // Count the number of posts for the current author
-                $post_count = count_user_posts($author_id);
-
-                // Retrieve author image
-                $author_image = get_the_author_meta('author_image', $author_id);
-
-                // Display author information if they have more than 1 post
-                if ($post_count > 0) {
-
-                    echo '<!-- Author Swiper slide -->';
-                    echo '<div class="swiper-slide">';
-                    // Display author image and name with a link to their posts
-                    echo '<a class="w-24 flex flex-col justify-center content-center items-center gap-2" href="' . $author_link . '">';
-                    echo '<img class="w-16 h-16 rounded-full object-cover saturate-0" src="' . esc_url($author_image) . '" alt="' . esc_html($author->display_name) . '">';
-                    echo '<span class="block text-foreground/60 text-xs text-center">' . esc_html($author->display_name) . '</span>';
-                    echo '</a>';
-                    echo '</div>';
-                }
-            }
-
-            echo '</div>';
-
-            // End of author div
-            echo '</div>';
-        }
-        ?>
-        <!-- Initialize the Swiper plugin -->
-        <script id="swiper-handler">
-            var swiper = new Swiper(".authorSwiper", {
-                slidesPerView: 8,
-                spaceBetween: 32,
-                breakpoints: {
-                    "@0.00": {
-                        slidesPerView: 3,
-                        spaceBetween: 12,
-                    },
-                    "@0.75": {
-                        slidesPerView: 6,
-                        spaceBetween: 24,
-                    },
-                    "@1.00": {
-                        slidesPerView: 8,
-                        spaceBetween: 24,
-                    },
-                },
-            });
-        </script>
-    </section>
     <!-- Main articles -->
-    <section class="px-8 xl:px-12 mb-12">
-        <h2 class="capitalize font-serif text-4xl font-black mb-6 after:block after:h-[8px] after:mt-2 after:w-full after:border-t-2 after:border-b after:border-t-foreground">Mais recente</h2>
+    <section class="px-8 xl:px-12 mt-6 mb-12">
+        <h2 class="capitalize font-serif text-4xl font-black mb-6 after:block after:h-[8px] after:mt-2 after:w-full after:border-t-2 after:border-b after:border-t-foreground">Mais recentes</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-12">
             <?php
             // Retrieve the two most recent posts
@@ -276,6 +202,83 @@ get_header();
                     ?>
                 </div>
             </div>
+        </div>
+    </section>
+    <!-- Display authors carousel -->
+    <section class="px-8 xl:px-12">
+        <h2 class="capitalize font-serif text-4xl font-black mb-6 after:block after:h-[8px] after:mt-2 after:w-full after:border-t-2 after:border-b after:border-t-foreground">Nossos autores</h2>
+        <div class="flex flex-row justify-between mb-12">
+            <?php
+            // Arguments to get authors with highest post counts
+            $args = array(
+                'orderby' => 'post_count', // Sort by post count
+                'order' => 'DESC', // Sort in descending order
+                'number' => 12 // Get maximum of 12 authors
+            );
+
+            // Retrieve authors with the given arguments
+            $authors = get_users($args);
+
+            // Check if there are any authors with more than 1 post
+            if (!empty($authors)) {
+
+                // Start of author div
+                echo '<!-- Author div -->';
+                echo '<div class="swiper authorSwiper">';
+                echo '<div class="swiper-wrapper justify-between">';
+
+                // Display authors carousel if authors with more than 1 post exist
+                foreach ($authors as $author) {
+                    $author_id = $author->ID;
+                    $author_link = get_author_posts_url($author_id);
+
+                    // Count the number of posts for the current author
+                    $post_count = count_user_posts($author_id);
+
+                    // Retrieve author image
+                    $author_image = get_the_author_meta('author_image', $author_id);
+
+                    // Display author information if they have more than 1 post
+                    if ($post_count > 0) {
+
+                        echo '<!-- Author Swiper slide -->';
+                        echo '<div class="swiper-slide">';
+                        // Display author image and name with a link to their posts
+                        echo '<a class="w-24 flex flex-col justify-center content-center items-center gap-2" href="' . $author_link . '">';
+                        echo '<img class="w-16 h-16 rounded-full object-cover saturate-0" src="' . esc_url($author_image) . '" alt="' . esc_html($author->display_name) . '">';
+                        echo '<span class="block text-foreground/60 text-xs text-center">' . esc_html($author->display_name) . '</span>';
+                        echo '</a>';
+                        echo '</div>';
+                    }
+                }
+
+                echo '</div>';
+
+                // End of author div
+                echo '</div>';
+            }
+            ?>
+            <!-- Initialize the Swiper plugin -->
+            <script id="swiper-handler">
+                var swiper = new Swiper(".authorSwiper", {
+                    slidesPerView: 8,
+                    spaceBetween: 32,
+                    breakpoints: {
+                        "@0.00": {
+                            slidesPerView: 3,
+                            spaceBetween: 12,
+                        },
+                        "@0.75": {
+                            slidesPerView: 6,
+                            spaceBetween: 24,
+                        },
+                        "@1.00": {
+                            slidesPerView: 8,
+                            spaceBetween: 24,
+                        },
+                    },
+                });
+            </script>
         </div>
     </section>
     <!-- Interview posts slider -->
@@ -656,7 +659,7 @@ get_header();
                         slidesPerView: 4,
                         spaceBetween: 24,
                     },
-                },                
+                },
             });
         </script>
     </section>

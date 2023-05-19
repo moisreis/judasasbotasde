@@ -30,7 +30,6 @@ get_header();
         <p class="text-lg text-foreground/90 mb-4">Além disso, a plataforma também busca promover a interação entre seus leitores e colaboradores, estimulando o debate e a reflexão sobre os temas abordados. Para isso, são incentivados comentários e contribuições por parte dos leitores, desde que respeitem os princípios e critérios da plataforma.</p>
         <p class="text-lg text-foreground/90 mb-4">A plataforma <b>JUDAS, As botas de</b> valoriza a diversidade de perspectivas e a pluralidade de ideias, buscando sempre apresentar diferentes abordagens sobre os temas abordados. Dessa forma, a plataforma pretende contribuir para o desenvolvimento do pensamento crítico e para o enriquecimento do debate público.</p>
         <p class="text-lg text-foreground/90">Por fim, a plataforma <b>JUDAS, As botas de</b> se compromete em garantir a qualidade e a veracidade das informações divulgadas, seguindo os princípios éticos do jornalismo e da pesquisa científica.</p>
-
         </div>
     </section>
 </main>

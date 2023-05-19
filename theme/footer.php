@@ -86,12 +86,13 @@
             ));
             ?>
         </div>
-
     </div>
     <!-- Footer Links -->
-    <div class="flex flex-col lg:flex-row gap-3 lg:gap-0 justify-between content-center py-6 lg:py-2 border-t">
+    <div class="flex flex-col lg:flex-row gap-3 lg:gap-6 justify-start content-center py-6 lg:py-2 border-t">
         <span class="text-xs uppercase text-foreground/80">© JUDAS, As botas de 2023</span>
-        <span class="text-xs uppercase text-foreground/80">Made by <b class="font-black">Moisés Reis</b></span>
+        <a href="https://github.com/moisesmmreis/judasasbotasde">
+            <span class="text-xs uppercase text-blue-600/80 underline">Desenvolvimento Colaborativo</span>
+        </a>
     </div>
     <!-- Scroll to the top -->
     <button class="fixed bottom-4 right-4 z-[999] p-3 shadow-lg border bg-white rounded-full text-foreground" id="scrolltotop">

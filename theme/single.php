@@ -21,12 +21,6 @@ get_header();
             <!-- Share buttons -->
             <div class="mb-6 flex flex-wrap items-center justify-start gap-3 xl:gap-6">
                 <?php echo do_shortcode('[social_sharing]'); ?>
-                <button class="bg-white border border-neutral-300 focus:outline-none hover:bg-neutral-100 font-medium rounded-3xl max-w-fit max-h-fit text-sm flex flex-row gap-2 justify-center content-center items-center px-3 py-1.5">
-                    <span>Copiar</span>
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244" />
-                    </svg>
-                </button>
             </div>
             <!-- Post thumbnail -->
             <?php if (has_post_thumbnail()) : ?>
@@ -36,7 +30,7 @@ get_header();
                 </figure>
             <?php endif; ?>
             <!-- Post meta -->
-            <div class="flex flex-col justify-start content-start gap-0 before:block before:h-[8px] before:mb-6 before:w-full before:border-t-2 before:border-b">
+            <div class="flex flex-col justify-start content-start gap-0 py-6">
                 <?php
                 // Retrieve author image
                 $author_image = get_the_author_meta('author_image', get_the_author_meta('ID'));
@@ -67,18 +61,12 @@ get_header();
                 </div>
             </div>
             <!-- Post content -->
-            <article class="prose prose-a:text-blue-600 prose-a:no-underline transition-colors max-w-none mb-12 prose-lg font-serif text-foreground pt-6 before:block before:h-[8px] before:mb-6 before:w-full before:border-t-2 before:border-b">
+            <article class="prose prose-a:text-blue-600 prose-a:no-underline transition-colors max-w-none mb-12 prose-lg font-serif text-foreground pt-6">
                 <?php the_content(); ?>
             </article>
             <!-- Share buttons -->
             <div class="mb-6 flex flex-wrap items-center justify-start gap-3 xl:gap-6">
                 <?php echo do_shortcode('[social_sharing]'); ?>
-                <button class="bg-white border border-neutral-300 focus:outline-none hover:bg-neutral-100 font-medium rounded-3xl max-w-fit max-h-fit text-sm flex flex-row gap-2 justify-center content-center items-center px-3 py-1.5">
-                    <span>Copiar</span>
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244" />
-                    </svg>
-                </button>
             </div>
             <!-- Donations -->
             <div class="mb-12">
@@ -88,12 +76,14 @@ get_header();
                     <p class="text-base mb-4">Mesmo em tempos de crise, toda a nossa equipe trabalha gratuitamente e não cobramos absolutamente nada de nossos leitores - fora o tempo. Fazemos isso porque acreditamos na luta contra a desinformação e o fascismo, e também acreditamos que quanto mais livre é o conhecimento, maior é o número de pessoas que podem acompanhar os acontecimentos que moldam o nosso mundo, compreender o seu impacto nas comunidades e inspirar-se para tomar medidas significativas. Milhões podem se beneficiar do acesso aberto a um conteúdo relevante, confiável e de qualidade, independentemente da sua capacidade de pagar por isso.</p>
                     <p class="text-base mb-4">Cada contribuição, seja ela grande ou pequena, alimenta o nosso trabalho e sustenta o nosso futuro. Apoie o <i>JUDAS, As botas de</i> a partir de R$1 - demora apenas um minuto. <b class="bg-yellow-300 font-bold">Entendemos a situação do Brasil, mas, por favor, considere apoiar-nos com uma quantia regular todos os meses. Obrigado.</b></p>
                     <p class="text-base mb-4">O nosso PIX é <i class="font-bold text-blue-600">74991895723</i>, mas você também pode colaborar clicando no botão abaixo, é muito rápido</p>
-                    <button class="px-4 py-2 bg-amber-500 text-white max-w-fit max-h-fit rounded-3xl text-sm flex flex-row gap-2 justify-center content-center items-center">
-                        <span>Apoie-nos</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
-                            <path stroke-linecap="miter" stroke-linejoin="miter" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
-                        </svg>
-                    </button>
+                    <a href="https://apoia.se/judasasbotasde">
+                        <button class="px-4 py-2 bg-amber-500 text-white max-w-fit max-h-fit rounded-3xl text-sm flex flex-row gap-2 justify-center content-center items-center">
+                            <span>Apoie-nos</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+                                <path stroke-linecap="miter" stroke-linejoin="miter" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
+                            </svg>
+                        </button>
+                    </a>
                 </div>           
             </div>
             <!-- ABNT references div -->
@@ -178,6 +168,8 @@ get_header();
                     <?php
                         endwhile;
                         wp_reset_postdata();
+                    else :
+                        echo '<span class="text-foreground/80">Nenhum resultado foi encontrado</span>';
                     endif;
                     ?>
                 </div>

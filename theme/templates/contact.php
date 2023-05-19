@@ -33,9 +33,9 @@ get_header();
         </div>
     </section>
     <!-- Support us -->
-    <section class="flex flex-col">
+    <section class="flex flex-col mb-12">
         <!-- Heading for support us -->
-        <h1 class="capitalize font-serif text-4xl font-black mb-6 after:block after:h-[8px] after:mt-2 after:w-full after:border-t-2 after:border-b">Somos trabalhadores, assim como você</h1>
+        <h1 class="capitalize font-serif text-4xl font-black mb-6 after:block after:h-[8px] after:mt-2 after:w-full after:border-t-2 after:border-b after:border-t-foreground">Somos trabalhadores, assim como você</h1>
         <p class="text-lg text-foreground/90">Este projeto <span class="font-bold">NÃO</span> é sustentado por qualquer partido, grupo ou empresa. Não temos nenhum financiamento que não seja as contribuições de nossos colaboradores. Se você gostou do que leu e deseja colaborar na construção de uma plataforma de divulgação de conteúdo rico, confiável e construtivo, por favor, pense em se tornar um membro do nosso time de apoiadores, ajude-nos e contribua com o crescimento do JUDAS, As botas de através deste <a class="underline text-blue-600" href="https://apoia.se/judasasbotasde">link</a></p>
     </section>
 </main>
